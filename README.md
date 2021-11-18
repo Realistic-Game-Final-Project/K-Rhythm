@@ -1,6 +1,6 @@
 # K-Rhythm
 
-## 2021-11-17 ~ 2021-12-1
+## 2021-11-17 ~ 2021-12-16
 
 ### 팀원
 - Front-end Developer & Game Planner : 이주엽
