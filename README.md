@@ -3,7 +3,7 @@
 ## 2021-11-17 ~ 2021-12-1
 
 ### 팀원
-- Front-end Developer & (게임기획 + 게임디자인 관련 용어를 정하기) : 이주엽
+- Front-end Developer & Game Planner : 이주엽
 - Back-end Developer : 박지원
 - Graphic Designer : 김형석
 - Graphic Designer : 유웅연
