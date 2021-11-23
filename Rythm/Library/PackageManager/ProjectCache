@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637732407713689760
-    m_Hash: 1345838432
+      ticks: 637732416304513202
+    m_Hash: 2448232737
   m_LockFileStatus:
     m_FilePath: C:/Users/User/Documents/GitHub/K-Rhythm/Rythm/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637732407714442211
-    m_Hash: 1806017836
+      ticks: 637732416304513202
+    m_Hash: 4277438924
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
