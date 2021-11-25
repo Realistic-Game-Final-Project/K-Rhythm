@@ -1,104 +1,109 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
-using System.IO;
+using UnityEngine.UI;
 
-public class ScalesInfo
+[System.Serializable]
+public class BackgroundMusicData
 {
-    private int num;
-    private AudioClip clip;
-
-    ScalesInfo(int num , AudioClip clip)
-    {
-        this.num = num;
-        this.clip = clip;
-    }
+    public int scale;
+    public float beat;
+}
+[System.Serializable]
+public class MyTextDataArray
+{
+    public BackgroundMusicData[] music; //json 파일의 키와 객체의 이름은 반드시 같아야 합니다.
 }
 
+enum MUSIC_NUMBER
+{
+    INUYASHA = 1,
+    LETITGO = 2,
+    TMP = 3       
+}
 public class BackgroundMusic : MonoBehaviour
 {
+    public const int AUDIO_SOURCE_COUNT = 14;
 
-    public TextAsset inuyasha_json;
-
-    [System.Serializable]
-    public class BackgroundMusicData
-    {
-        public int num;
-        public int duration;
-    }
-    [System.Serializable]
-    public class BackgroundMusicArray
-    {
-        public BackgroundMusicData[] background_music_data;
-    }
-
-    public BackgroundMusicArray background_music_array = new BackgroundMusicArray();
-    
-    public const float SCALE_DURATION = 3f; //later , const -> value
-    public const int SCALES_COUNT = 16;
-    public const int AUDIO_SOURCE_COUNT = 4;
-
-    public AudioClip[] original_clips = new AudioClip[SCALES_COUNT];
+    TextAsset textdata;
+    private MyTextDataArray mytext;
+    public new AudioClip[] audio;
     private AudioSource[] mp3 = new AudioSource[AUDIO_SOURCE_COUNT];
-    private BackgroundMusicData background_music_data;
+    private int music_index = 0;
+    private int sound_manager_number = 0;
     private IEnumerator coroutine_obj;
 
-    private void Awake()
+    void Awake()
     {
         Initialize();
-        StartCoroutine(PlayBackgroundMusic());
-        //GetJsonFromFile();
-        background_music_array = JsonUtility.FromJson<BackgroundMusicArray>(inuyasha_json.text);
+        StartCoroutine("AutoPlayBackgroundmusic");  
     }
 
     private void Initialize()
-    {       
-        ScalesInfo[] scales_info = new ScalesInfo[SCALES_COUNT];
-        for(int i=0; i<AUDIO_SOURCE_COUNT; i++)
+    {
+        for (int i = 0; i < AUDIO_SOURCE_COUNT; i++)
         {
             mp3 = gameObject.GetComponents<AudioSource>();
         }
-        for(int i=0; i<SCALES_COUNT; i++)
+    }
+
+    private void SelectMusicAndLoadData(int num)
+    {
+        if (num == (int)MUSIC_NUMBER.INUYASHA)
         {
-            //scales_info[i] = new ScalesInfo(i+1 , original_clips[i]);
-        }        
+            textdata = Resources.Load("Inuyasha") as TextAsset;
+            mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
+        }
+        else if (num == (int)MUSIC_NUMBER.LETITGO)
+        {
+            textdata = Resources.Load("LetItGo") as TextAsset;
+            mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
+        }
     }
-
-    //TODO : 주엽이가 만든 데이터에서 음계번호를 읽어서 오디오 클립으로 변환 , 음악 지속 시간 추출  
-    void GetJsonFromFile()
+    private int ReturnSoundManagerNumber()
     {
-        string json_path = Path.Combine(Application.dataPath, "PJW", "Inuyasha.json");
-        //string background_music_string = File.ReadAllText(json_path);  
-      
-        //background_music_data = JsonUtility.FromJson<BackgroundMusicData>(background_music_string);
-
-        ParseJson();     
+        if(sound_manager_number == AUDIO_SOURCE_COUNT-1)
+        {
+            sound_manager_number = 0;
+        }
+        return sound_manager_number;
     }
-
-    private void ParseJson()
+    IEnumerator AutoPlayBackgroundmusic()
     {
-
-    }
-
-    IEnumerator PlayBackgroundMusic()
-    {
-        //GetDataFromFirebaseAndConvertAudioclip()
-
-        coroutine_obj = PlayBackgroundMusic();
-        Debug.Log("coroutine Success");
         /*
-         * 
-         * 
-         * 여기에 음계 별로 소리 재생하도록 코드 작성
-         * - 다양한 AudioSource 
-         * - 코루틴에서 변수(duration)를 받고 그 변수 만큼 음악 지속 하도록 구현
+         *TODO : 음악 종료 시 코루틴 종료시키는 코드
          */
+        
 
-        yield return new WaitForSeconds(SCALE_DURATION);
+        Debug.Log(sound_manager_number);
+        const float BEAT_DELAY_DIVISION = 4f;
 
+        int cur_sound_manager_number = ReturnSoundManagerNumber(); // 1 ~ 14
+        sound_manager_number++; //값 증가
+
+        SelectMusicAndLoadData((int)MUSIC_NUMBER.LETITGO);
+        coroutine_obj = AutoPlayBackgroundmusic();
+       
+        //0 = 쉼표
+        if (mytext.music[music_index].scale == 0)
+        {
+            mp3[cur_sound_manager_number].clip = null;
+            mp3[cur_sound_manager_number].Play();
+        }
+        //나머지 = 음표
+        else
+        {
+            mp3[cur_sound_manager_number].clip = audio[mytext.music[music_index].scale - 1];
+            mp3[cur_sound_manager_number].Play();
+        }        
+        yield return new WaitForSeconds(mytext.music[music_index].beat);
+        music_index++; // 이거 음악 끝나면 다시 0 //지금은 에러 뜸
+        StartCoroutine(AutoPlayBackgroundmusic());
+        yield return new WaitForSeconds(mytext.music[music_index].beat / BEAT_DELAY_DIVISION);
         StopCoroutine(coroutine_obj);
-        coroutine_obj = null; //go GC?
-        StartCoroutine(PlayBackgroundMusic());
+        mp3[cur_sound_manager_number].Stop();        
+        //yield return new WaitForSeconds(mytext.music[music_index].beat / 10f);              
+ 
     }
-
 }
