@@ -19,7 +19,7 @@ public class PlayBangHyang : MonoBehaviour
 
     private void Initialize()
     {
-        hitting_point_parent = GameObject.FindGameObjectWithTag("HittingPoint").transform;
+        hitting_point_parent = GameObject.FindGameObjectWithTag("HittingPointBanghyang").transform;
         mp3 = gameObject.GetComponent<AudioSource>();
         for (int i = 0; i < SCALES_COUNT; i++) //using index , never change
         {

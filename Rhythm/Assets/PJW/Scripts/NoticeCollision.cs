@@ -27,14 +27,13 @@ public class NoticeCollision : MonoBehaviour
         else if (tag == janggu_scale_tag)
         {
             /*
-             * TODO : 장구 치기
+             * TODO : janggu
              */
         }
         else if (tag == gayageum_scale_tag)
         {
-            /*
-             * TODO : 가야금 치기
-             */
+            Debug.Log(tag + "  " + scale_object.name);
+            play_gayageum_script.PlayInstrument(scale_object);
         }
     }
 }
