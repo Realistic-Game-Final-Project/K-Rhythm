@@ -22,18 +22,17 @@ public class NoteManager_Lee : MonoBehaviour
     }
     private void Update()
     {
-        
-        
+       
     }
 
     IEnumerator NoteGame()
     {
-        for(int i =0; i<GetBeat.Inuyasha.Length; i++)
+        for(int i =0; i<GetBeat.music.Length; i++)
         {
             GameObject NowNote = Instantiate(GNote, Nappear.position, Quaternion.identity);
             NowNote.transform.SetParent(this.transform);
             TimingManager.boxNoteList.Add(NowNote);
-            yield return new WaitForSeconds(GetBeat.Inuyasha[i].beat);
+            yield return new WaitForSeconds(GetBeat.music[i].beat);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
