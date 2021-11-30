@@ -30,7 +30,7 @@ public class TimingManager_Lee : MonoBehaviour
                 if(timingBox[x].x <= notePosX && notePosX <= timingBox[x].y)
                 {
                     Debug.Log("Hit" + x);
-                    return;
+                    
                 }
             }
             

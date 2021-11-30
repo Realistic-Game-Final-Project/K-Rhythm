@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Inuyasha_Lee
+public class Muse_Lee
 {
     public int scale;
     public float beat;
@@ -13,7 +13,7 @@ public class Inuyasha_Lee
 [System.Serializable]
 public class MyTextDataArray_Lee
 {
-    public Inuyasha_Lee[] Inuyasha;
+    public Muse_Lee[] music;
 }
 
 
@@ -42,22 +42,15 @@ public class Music : MonoBehaviour
         
     }
 
-    void Json()
-    {
-        textdata = Resources.Load("Inuyasha") as TextAsset;
-        mytext = JsonUtility.FromJson<MyTextDataArray_Lee>(textdata.ToString());
-        Debug.Log(mytext.Inuyasha[1].beat);
-    }
-
     IEnumerator JsonPar()
     {
-        textdata = Resources.Load("letitgo") as TextAsset;
+        textdata = Resources.Load("LetItGo") as TextAsset;
         mytext = JsonUtility.FromJson<MyTextDataArray_Lee>(textdata.ToString());
         yield return new WaitForSeconds(3.0f);
-        for(int i = 0; i< mytext.Inuyasha.Length; i++)
+        for(int i = 0; i< mytext.music.Length; i++)
         {
             //0 -> Null
-            if(mytext.Inuyasha[i].scale == 0)
+            if(mytext.music[i].scale == 0)
             {
                 Mplayer.clip = null;
                 Mplayer1[0].Play();
@@ -67,36 +60,36 @@ public class Music : MonoBehaviour
             {
                // 1 ³·Àº ½Ã 2 µµ ~~~~
                
-                Mplayer.clip = audio[mytext.Inuyasha[i].scale-1];
-                Mplayer1[mytext.Inuyasha[i].scale - 1].Play();
-                if (mytext.Inuyasha[i].scale - 1 == 0)
+                Mplayer.clip = audio[mytext.music[i].scale-1];
+                Mplayer1[mytext.music[i].scale - 1].Play();
+                if (mytext.music[i].scale - 1 == 0)
                 {
                     //Mplayer.pitch = 1 - 0.166f;
                 }
                 Mplayer.Play();
             }
-            if (mytext.Inuyasha[i].beat >= 1.0f)
+            if (mytext.music[i].beat >= 1.0f)
             {
                 Mplayer2[0].Play();
                 Mplayer2[0].time = 0.05f;
             }
-            else if (mytext.Inuyasha[i].beat == 0.5f)
+            else if (mytext.music[i].beat == 0.5f)
             {
                 Mplayer2[1].Play();
                 Mplayer2[1].time = 0.05f;
             }
-            else if (mytext.Inuyasha[i].beat == 0.25f)
+            else if (mytext.music[i].beat == 0.25f)
             {
                 Mplayer2[2].Play();
                 Mplayer2[2].time = 0.05f;
             }
 
-            yield return new WaitForSeconds(mytext.Inuyasha[i].beat );
-          //yield return new WaitForSeconds(mytext.Inuyasha[i].beat- 0.01f);
-          // if(i< mytext.Inuyasha.Length -1)
-          //Mplayer.pitch = 1+ Mathf.Lerp(1, (mytext.Inuyasha[i+1].scale - mytext.Inuyasha[i].scale) * 0.166f, 0.01f);
-          //yield return new WaitForSeconds(0.01f);
-          // Mplayer.pitch = 1;
+            yield return new WaitForSeconds(mytext.music[i].beat );
+            //yield return new WaitForSeconds(mytext.Music[i].beat- 0.01f);
+            // if(i< mytext.Music.Length -1)
+            //Mplayer.pitch = 1+ Mathf.Lerp(1, (mytext.Music[i+1].scale - mytext.Music[i].scale) * 0.166f, 0.01f);
+            //yield return new WaitForSeconds(0.01f);
+            // Mplayer.pitch = 1;
             Mplayer.Stop();
             
         }
