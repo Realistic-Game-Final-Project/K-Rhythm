@@ -4,10 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HittingPoint
   - BangHyangScale
   - JangGuScale
   - GayageumScale
+  - HittingPointBanghyang
+  - HittingPointGayageum
+  - HittingPointJanggu
   layers:
   - Default
   - TransparentFX
