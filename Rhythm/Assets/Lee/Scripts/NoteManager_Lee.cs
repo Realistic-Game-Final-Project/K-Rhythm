@@ -27,6 +27,7 @@ public class NoteManager_Lee : MonoBehaviour
 
     IEnumerator NoteGame()
     {
+        //Note Instant
         for(int i =0; i<GetBeat.music.Length; i++)
         {
             GameObject NowNote = Instantiate(GNote, Nappear.position, Quaternion.identity);
@@ -37,6 +38,7 @@ public class NoteManager_Lee : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //Note Destroy
         if(collision.CompareTag("Note"))
         {
             TimingManager.boxNoteList.Remove(collision.gameObject);
