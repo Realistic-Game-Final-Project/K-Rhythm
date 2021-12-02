@@ -48,6 +48,6 @@ public class TimingManager_Lee : MonoBehaviour
             }
             
         }
-        Debug.Log("miss");
+        NEffect.JudgementEffect(3);
     }
 }

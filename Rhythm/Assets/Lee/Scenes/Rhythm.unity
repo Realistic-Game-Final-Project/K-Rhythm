@@ -1302,7 +1302,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Musician: {fileID: 4102899691595882735}
   Nappear: {fileID: 1867683803}
-  GNote: {fileID: 6093946889902935622, guid: d5bde9d6153b4114ebd92535960a9433, type: 3}
+  GNote:
+  - {fileID: 3260650225223581812, guid: 8bb0446fd248d6a4cac6fddf75a2bb41, type: 3}
+  - {fileID: 3098370041779148271, guid: 5eee00a49209d334b9f4b588ddaa413a, type: 3}
+  - {fileID: 6093946889902935622, guid: d5bde9d6153b4114ebd92535960a9433, type: 3}
   NEnd: {fileID: 249313168}
 --- !u!61 &2092096110
 BoxCollider2D:
