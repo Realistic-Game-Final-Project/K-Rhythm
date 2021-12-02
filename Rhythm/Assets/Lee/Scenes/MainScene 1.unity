@@ -1592,6 +1592,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4b2a6c81bdbaa4d95a36a681eeff84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1742875417
 GameObject:
   m_ObjectHideFlags: 0

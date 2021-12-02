@@ -23,7 +23,9 @@ public class Music : MonoBehaviour
     public MyTextDataArray_Lee mytext;
     public AudioClip[] audio;
     public AudioSource Mplayer;
+    //가야금
     public AudioSource[] Mplayer1;
+    //장구
     public AudioSource[] Mplayer2;
     public int[] P_Beat;
     // Start is called before the first frame update
