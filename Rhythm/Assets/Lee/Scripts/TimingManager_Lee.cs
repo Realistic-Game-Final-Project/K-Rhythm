@@ -38,7 +38,7 @@ public class TimingManager_Lee : MonoBehaviour
                     boxNoteList[i].GetComponent<Note_Lee>().Hide();
                     boxNoteList.RemoveAt(i);
 
-                    //Effect Set
+                    //Effect Set 0: Perfect 1: Good 2:Bad 3:Miss
                     if (x < timingBox.Length - 1)
                         NEffect.NoteHitEffect();
                     NEffect.JudgementEffect(x);
