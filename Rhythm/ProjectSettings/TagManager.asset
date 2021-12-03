@@ -10,6 +10,19 @@ TagManager:
   - HittingPointBanghyang
   - HittingPointGayageum
   - HittingPointJanggu
+  - Note
+  - end_0
+  - end_1
+  - end_2
+  - end_3
+  - end_4
+  - end_5
+  - end_6
+  - end_7
+  - end_8
+  - end_9
+  - end_10
+  - end_11
   layers:
   - Default
   - TransparentFX
