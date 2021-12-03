@@ -20,9 +20,9 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
 
     //TODO : 지금 사용자가 누르지 않았을 때 collision 부분과 겹쳐져서 , 제거 되는 코드가 에러가 있어서
     //일단 collision 검사 부분을 뒤로 밀어 버리는 방식을 썼으나 이는 임시 방편일 뿐 고쳐야 함.
+    //SOL : 그냥 여기 지나면 삭제
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("I Destroy");
         PopFromSelectedQueue(gameObject.tag);        
         Destroy(collision.gameObject);
     }
