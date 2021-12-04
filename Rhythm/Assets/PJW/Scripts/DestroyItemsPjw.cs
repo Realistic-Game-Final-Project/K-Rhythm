@@ -9,9 +9,10 @@ public class DestroyItemsPjw : MonoBehaviour
     
     private void Awake()
     {
+        /*
         Debug.Log(StaticDataPjw.is_banghyang_selected);
         Debug.Log(StaticDataPjw.is_gayageum_selected);
-        Debug.Log(StaticDataPjw.is_janggu_selected);        
+        Debug.Log(StaticDataPjw.is_janggu_selected);   */     
         Initialize();
         SaveonlySelectedInstrument();
     }
