@@ -1613,7 +1613,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  note: {fileID: 0}
+  note: {fileID: 6093946889902935622, guid: 2a38bf6a3abafaa4c97970f2c1c7d137, type: 3}
 --- !u!114 &395211256
 MonoBehaviour:
   m_ObjectHideFlags: 0

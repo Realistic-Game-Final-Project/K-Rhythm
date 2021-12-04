@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 6093946889902935623}
   - component: {fileID: 6093946889902935621}
   - component: {fileID: 6093946889902935620}
-  - component: {fileID: 6093946889902935610}
   - component: {fileID: -3482281854096946531}
   - component: {fileID: -5530242205015241228}
+  - component: {fileID: -4465670118871602440}
   m_Layer: 5
-  m_Name: Duck
+  m_Name: Note
   m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,19 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6093946889902935610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6093946889902935622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2fb902ebdd23dd4c8e5929e55a403bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NSpeed: 240
 --- !u!70 &-3482281854096946531
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -128,3 +115,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4465670118871602440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093946889902935622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fb902ebdd23dd4c8e5929e55a403bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NSpeed: 800

@@ -42,20 +42,26 @@ public class BackgroundMusic : MonoBehaviour
     public const int AUDIO_SOURCE_COUNT = 14;
 
     TextAsset textdata;
-    public MyTextDataArray mytext { get; private set; } //get another script
-    //public RhythmGameOnSelectedSheetPjw rhythm_game_on_selected_sheet;
+    public MyTextDataArray mytext { get; private set; } //get another script  
     public new AudioClip[] audio;
     private AudioSource[] mp3 = new AudioSource[AUDIO_SOURCE_COUNT];    
     private int music_index = 0;
     private int sound_manager_number = 0;
     private IEnumerator coroutine_obj;
     
-    void Awake()
+    private void Awake()
     {
         Initialize();
-        SelectMusicAndSaveStaticContainers((int)MUSIC_NUMBER.INUYASHA);
-        StartCoroutine("AutoPlayBackgroundmusic");
-        RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine();
+        SelectMusicAndSaveStaticContainers((int)MUSIC_NUMBER.INUYASHA);       
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) == true) //Space 누르면 시작하도록 일단 테스트
+        {
+            StartCoroutine("AutoPlayBackgroundmusic");
+            RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine();
+        }
     }
 
     private void Initialize()
@@ -73,6 +79,10 @@ public class BackgroundMusic : MonoBehaviour
             textdata = Resources.Load("Inuyasha") as TextAsset;
             mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
             SetSelectedMusicNumber((int)MUSIC_NUMBER.INUYASHA);
+            /*foreach(var i in mytext.music)
+            {
+                Debug.Log(i.scale + " " + i.beat);
+            }*/
      
             for (int i = 0; i < mytext.music.Length; i++)
             {
