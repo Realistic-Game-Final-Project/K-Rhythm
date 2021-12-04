@@ -170,7 +170,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         {
             index = gayageum_scale_dictionary[selected_list[i].Item1];
             beat_value = selected_list[i].Item2;
-            Debug.Log(beat_value);
+            //Debug.Log(beat_value);
             
             if (index == -1)
             {
