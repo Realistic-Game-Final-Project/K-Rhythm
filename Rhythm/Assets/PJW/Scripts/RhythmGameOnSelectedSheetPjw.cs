@@ -52,8 +52,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     }   
     
     private const int GAYAGEUM_SCALES_COUNT = 12; //실제로 사용하는 음은 9개지만 악보가 12줄입니다.
-    private const int LEFT_PADDING = 99;
-    private const float LOOP_CNT = 50f;
+    private const int LEFT_PADDING = 99;   
     private const float SCALE_SIZE_MULTIPLY = 0.6f;
 
     public List<Tuple<int, float>> selected_list = new List<Tuple<int, float>>();
@@ -62,7 +61,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     [SerializeField] Transform[] end_points = new Transform[GAYAGEUM_SCALES_COUNT];
     [SerializeField] GameObject note = null;
         
-    private int index = 0;
+    //private int index = 0;
     private Vector3[] print_locations = new Vector3[GAYAGEUM_SCALES_COUNT];
     private Dictionary<int, int> gayageum_scale_dictionary = new Dictionary<int, int>();
     public Queue<Transform>[] unity_editor_current_scales = new Queue<Transform>[GAYAGEUM_SCALES_COUNT]; //using CollisionAndUpdatingQueuePjw Class
@@ -150,7 +149,11 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         else if (selected_music_number == (int)MUSIC_NUMBER.LETITGO)
         {
             selected_list = MusicDataPjw.music_letitgo;
-        }            
+        }     
+        /*foreach(var i in selected_list)
+        {
+            Debug.Log(i.Item1 + " " + i.Item2);
+        }*/
     }
 
     public void OrderForStartingCoroutine()
@@ -161,33 +164,31 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     IEnumerator PrintScales()
     {
         int index = 0;
+        float beat_value = 0;
+
         for(int i=0; i<selected_list.Count; i++)
         {
             index = gayageum_scale_dictionary[selected_list[i].Item1];
+            beat_value = selected_list[i].Item2;
+            Debug.Log(beat_value);
             
-            if(index == -1)
+            if (index == -1)
             {
+                yield return new WaitForSeconds(beat_value);
                 continue;
             }
-            //Debug.Log(index);
+          
             GameObject note_prefab = Instantiate(note, starting_points[index].position ,new Quaternion(0, 0, 0, 0)); //spawn
             note_prefab.transform.localScale *= SCALE_SIZE_MULTIPLY;
-            note_prefab.transform.SetParent(this.transform);
+            note_prefab.transform.SetParent(this.transform);            
             FillUnityEditorCurrentScales(index , note_prefab.transform , note_prefab);
-
-            for (int j=0; j<LOOP_CNT; j++)
-            {
-                if(note_prefab == null)
-                {
-                    break;
-                }
-                note_prefab.transform.position += new Vector3(3, 0, 0);
-                yield return new WaitForSeconds(selected_list[i].Item2 / LOOP_CNT);
-            }   
+                       
+            yield return new WaitForSeconds(beat_value);
         }     
         yield return null;
     }
 
+    //유니티 에디터의 UI에 존재하는 음표들을 자료구조에 저장하는 함수
     private void FillUnityEditorCurrentScales(int index , Transform note_prefab_transform , GameObject note_prefab_gameobject)
     {
         unity_editor_current_scales[index].Enqueue(note_prefab_transform);
@@ -195,6 +196,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     }
 
     //이것도 CollisionAndUpdatingQueuePjw 처럼 만들어도 좋을듯
+    //vr에서 collider로 구현되니 많이 바꿀듯
     private void CheckInputs() //A-(int)GAYAGEUM_SCALE_NUMBER.ONE , S-(int)GAYAGEUM_SCALE_NUMBER.TWO , ...
     {
         int index = 0;

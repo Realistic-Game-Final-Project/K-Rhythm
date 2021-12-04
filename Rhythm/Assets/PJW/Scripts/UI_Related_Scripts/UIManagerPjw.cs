@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManagerPjw : MonoBehaviour
 {
@@ -72,16 +73,25 @@ public class UIManagerPjw : MonoBehaviour
     public void SelectBanghyang()
     {
         Debug.Log("Banghyang");
-        //TODO : Event select particular instrument 
+        StaticDataPjw.is_banghyang_selected = true;
+        StaticDataPjw.is_gayageum_selected = false;
+        StaticDataPjw.is_banghyang_selected = false;
+        SceneManager.LoadScene("SelectedInstrumentScene");       
     }
     public void SelectGayageum()
     {
         Debug.Log("Gayageum");
-        //TODO : Event select particular instrument 
+        StaticDataPjw.is_banghyang_selected = false;
+        StaticDataPjw.is_gayageum_selected = true;
+        StaticDataPjw.is_janggu_selected = false;
+        SceneManager.LoadScene("SelectedInstrumentScene");
     }
     public void SelectJanggu()
     {
         Debug.Log("Janggu");
-        //TODO : Event select particular instrument 
+        StaticDataPjw.is_banghyang_selected = false;
+        StaticDataPjw.is_gayageum_selected = false;
+        StaticDataPjw.is_janggu_selected = true;
+        SceneManager.LoadScene("SelectedInstrumentScene");
     }
 }
