@@ -16,12 +16,12 @@ public class BackgroundMusicData
     public int scale;
     public float beat;
 }
+
 [System.Serializable]
 public class MyTextDataArray
 {
     public BackgroundMusicData[] music; // Must object name == json key
 }
-
 
 public class BackgroundMusic : MonoBehaviour
 {
@@ -51,16 +51,17 @@ public class BackgroundMusic : MonoBehaviour
     
     private void Awake()
     {
-        Initialize();
-        SelectMusicAndSaveStaticContainers((int)MUSIC_NUMBER.INUYASHA);       
+        Initialize();      
     }
 
+    //BackgroundMusic이 시작되면 악보의 게임도 시작됩니다.
+    //일단은 space 눌러야 겜 시작함.
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space) == true) //Space 누르면 시작하도록 일단 테스트
         {
             StartCoroutine("AutoPlayBackgroundmusic");
-            RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine();
+            RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine(); //내가 짰는데 신기하게 악보랑 배경음이랑 같은 음악을 잘 재생함.
         }
     }
 
@@ -72,17 +73,20 @@ public class BackgroundMusic : MonoBehaviour
         }                
     }
 
-    private void SelectMusicAndSaveStaticContainers(int num)
+    public void SelectMusicAndSaveStaticContainers()
     {
-        if (num == (int)MUSIC_NUMBER.INUYASHA)
+        int selected_music_index = GetMusicDataFromStatic();
+        Debug.Log("음악 고름" + selected_music_index);
+        if(selected_music_index == -1)
+        {
+            Debug.Log("MUSIC SELECT ERROR !");
+            return;
+        }
+        if (selected_music_index == (int)MUSIC_NUMBER.INUYASHA)
         {
             textdata = Resources.Load("Inuyasha") as TextAsset;
             mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
-            SetSelectedMusicNumber((int)MUSIC_NUMBER.INUYASHA);
-            /*foreach(var i in mytext.music)
-            {
-                Debug.Log(i.scale + " " + i.beat);
-            }*/
+            SetSelectedMusicNumber((int)MUSIC_NUMBER.INUYASHA);           
      
             for (int i = 0; i < mytext.music.Length; i++)
             {
@@ -90,7 +94,7 @@ public class BackgroundMusic : MonoBehaviour
             }
             RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();
         }
-        else if (num == (int)MUSIC_NUMBER.LETITGO)
+        else if (selected_music_index == (int)MUSIC_NUMBER.LETITGO)
         {
             textdata = Resources.Load("LetItGo") as TextAsset;
             mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
@@ -102,8 +106,31 @@ public class BackgroundMusic : MonoBehaviour
             }
             RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();           
         }
+        else //CANNON
+        {
+
+        }
     }
 
+    private int GetMusicDataFromStatic()
+    {
+        if (StaticDataPjw.is_inuyasha_selected == true)
+        {
+            return (int)MUSIC_NUMBER.INUYASHA;
+        }
+        else if (StaticDataPjw.is_letitgo_selected == true)
+        {
+            return (int)MUSIC_NUMBER.LETITGO;
+        }
+        else if (StaticDataPjw.is_cannon_selected == true)
+        {
+            return (int)MUSIC_NUMBER.CANNON;
+        }
+        else
+        {
+            return -1;
+        }
+    }
     private void SetSelectedMusicNumber(int num)
     {
         RhythmGameOnSelectedSheetPjw.Instance.selected_music_number = num;
