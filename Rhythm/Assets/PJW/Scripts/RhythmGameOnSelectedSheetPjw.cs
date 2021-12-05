@@ -12,30 +12,6 @@ using UnityEngine;
 */
 //일단은 이누야샤 노래로만 생각하고 구현을 해보자. (12/01)
 
-enum GAYAGEUM_SCALE_NUMBER //가야금 음을 한국말로 모름 
-{
-    ONE = 3,
-    TWO = 4,
-    THREE = 5,
-    FOUR = 6,
-    FIVE = 7,
-    SIX = 8,
-    SEVEN = 9,
-    EIGHT = 10,
-    NINE = 11
-}
-
-enum SCALE_ACCURACY_EASY
-{
-    EASY_PERFECT = 50,
-    EASY_GREAT = 100
-}
-
-enum SCALE_ACCURACY_HARD
-{
-    HARD_PERFECT = 30,
-    HARD_GREAT = 50
-}
 public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
 {
     private static RhythmGameOnSelectedSheetPjw instance;
@@ -149,7 +125,11 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         else if (selected_music_number == (int)MUSIC_NUMBER.LETITGO)
         {
             selected_list = MusicDataPjw.music_letitgo;
-        }     
+        }
+        else if (selected_music_number == (int)MUSIC_NUMBER.LETITGO)
+        {
+            selected_list = MusicDataPjw.music_tmp;
+        }
         /*foreach(var i in selected_list)
         {
             Debug.Log(i.Item1 + " " + i.Item2);

@@ -23,18 +23,19 @@ public class ScoreManagerPjw : MonoBehaviour
     }
     private const int SCORE_TYPES_COUNT = 3;
    
-    [SerializeField] Text[] perfect_great_miss_count = new Text[SCORE_TYPES_COUNT];
-    [SerializeField] Text sum_of_score;
+    [SerializeField] private Text[] perfect_great_miss_count = new Text[SCORE_TYPES_COUNT];
+    [SerializeField] private Text sum_of_score;
+    [SerializeField] private Canvas score_canvas;
 
     //게임 끝나면 호출될 것.
     public void BecomeActivate()
     {
-        transform.GetChild(0).gameObject.SetActive(true);       
+        score_canvas.transform.GetChild(0).gameObject.SetActive(true);       
     }
 
     public void BecomeDeActivate()
     {
-        transform.GetChild(0).gameObject.SetActive(false);
+        score_canvas.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void MeasureScore(int perfect_count , int great_count , int miss_count)
