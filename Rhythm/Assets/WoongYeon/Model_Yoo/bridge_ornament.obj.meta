@@ -3,7 +3,12 @@ guid: 7650b68473ea845689a4bfb0e799608a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bridge_ornament_base_lowMat
+    second: {fileID: 2100000, guid: 4549888ebd6f94f31b424ed940adbc6e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

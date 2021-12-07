@@ -3,7 +3,12 @@ guid: e6f27f82ba47846bea0b317738d40494
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bridge_side_poll_baseMat
+    second: {fileID: 2100000, guid: 79654ee5030e24212a35ae78be20e702, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

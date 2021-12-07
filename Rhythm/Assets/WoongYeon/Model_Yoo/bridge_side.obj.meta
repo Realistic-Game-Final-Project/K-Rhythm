@@ -3,7 +3,12 @@ guid: ba1a86a08892f44799f882d30badbeaf
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bridge_side_lowMat
+    second: {fileID: 2100000, guid: 0da4599c1e23b4b72bd6a115ccc41eb1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
