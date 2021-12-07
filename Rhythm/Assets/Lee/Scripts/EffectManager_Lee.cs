@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class EffectManager_Lee : MonoBehaviour
 {
+    private static EffectManager_Lee instance;
+    public static EffectManager_Lee Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<EffectManager_Lee>();
+            }
+            return instance;
+        }
+    }
+
     [SerializeField] Animator noteHitAni = null;
     string hit = "Hit";
     [SerializeField] Animator JudgeAni = null;

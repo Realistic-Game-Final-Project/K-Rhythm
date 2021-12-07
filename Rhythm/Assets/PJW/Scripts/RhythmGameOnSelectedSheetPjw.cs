@@ -268,6 +268,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         else if ((float)SCALE_ACCURACY_EASY.EASY_PERFECT  < accuracy_value && accuracy_value < (float)SCALE_ACCURACY_EASY.EASY_GREAT)
         {
             great_count++;
+
             Debug.Log(accuracy_value + " Great");           
         }      
         else //miss는 음표를 없애지 않음
