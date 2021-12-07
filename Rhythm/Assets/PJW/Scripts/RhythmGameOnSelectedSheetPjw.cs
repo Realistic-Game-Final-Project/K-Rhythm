@@ -85,23 +85,24 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
             unity_editor_current_scales[i] = new Queue<Transform>();
             unity_editor_current_scales_gameobject[i] = new Queue<GameObject>();
         }
-        //왼쪽은 소금 , 오른쪽은 가야금 음
-        //가야금 음은 1부터 시작하므로 저장할 때는 -1된 값으로 함
-        //소금의 음이 가야금에 없는 것은 -1
+        //소금 - 가야금
+        //소금의 0은 시 , 소금의 2는 레 , ...
+        //가야금의 줄 번호를 나타내는데 , 가야금의 줄 번호는 0부터 시작
+       
         gayageum_scale_dictionary.Add(0 , - 1);
         gayageum_scale_dictionary.Add(1, -1);
-        gayageum_scale_dictionary.Add(2, (int)GAYAGEUM_SCALE_NUMBER.ONE);
-        gayageum_scale_dictionary.Add(3, (int)GAYAGEUM_SCALE_NUMBER.TWO);
+        gayageum_scale_dictionary.Add(2, (int)GAYAGEUM_SCALE_NUMBER.FOUR);
+        gayageum_scale_dictionary.Add(3, (int)GAYAGEUM_SCALE_NUMBER.FIVE);
         gayageum_scale_dictionary.Add(4, -1);
-        gayageum_scale_dictionary.Add(5, (int)GAYAGEUM_SCALE_NUMBER.THREE);
-        gayageum_scale_dictionary.Add(6, (int)GAYAGEUM_SCALE_NUMBER.FOUR);
-        gayageum_scale_dictionary.Add(7, (int)GAYAGEUM_SCALE_NUMBER.FIVE);
+        gayageum_scale_dictionary.Add(5, (int)GAYAGEUM_SCALE_NUMBER.SIX);
+        gayageum_scale_dictionary.Add(6, (int)GAYAGEUM_SCALE_NUMBER.SEVEN);
+        gayageum_scale_dictionary.Add(7, (int)GAYAGEUM_SCALE_NUMBER.EIGHT);
         gayageum_scale_dictionary.Add(8, -1);
-        gayageum_scale_dictionary.Add(9, (int)GAYAGEUM_SCALE_NUMBER.SIX);
-        gayageum_scale_dictionary.Add(10, (int)GAYAGEUM_SCALE_NUMBER.SEVEN);
+        gayageum_scale_dictionary.Add(9, (int)GAYAGEUM_SCALE_NUMBER.NINE);
+        gayageum_scale_dictionary.Add(10, (int)GAYAGEUM_SCALE_NUMBER.TEN);
         gayageum_scale_dictionary.Add(11, -1);
-        gayageum_scale_dictionary.Add(12, (int)GAYAGEUM_SCALE_NUMBER.EIGHT);
-        gayageum_scale_dictionary.Add(13, (int)GAYAGEUM_SCALE_NUMBER.NINE);
+        gayageum_scale_dictionary.Add(12, (int)GAYAGEUM_SCALE_NUMBER.ELEVEN);
+        gayageum_scale_dictionary.Add(13, (int)GAYAGEUM_SCALE_NUMBER.TWELVE);
         gayageum_scale_dictionary.Add(14, -1);
         gayageum_scale_dictionary.Add(15, -1);
 
@@ -182,7 +183,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         int index = 0;
         if(Input.GetKeyDown(KeyCode.A) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.ONE;
+            index = (int)GAYAGEUM_SCALE_NUMBER.FOUR;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -190,7 +191,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.TWO;
+            index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -198,7 +199,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.THREE;
+            index = (int)GAYAGEUM_SCALE_NUMBER.SIX;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -206,7 +207,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.FOUR;
+            index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -214,7 +215,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;
+            index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -222,7 +223,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.SIX;
+            index = (int)GAYAGEUM_SCALE_NUMBER.NINE;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -230,7 +231,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.J) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;
+            index = (int)GAYAGEUM_SCALE_NUMBER.TEN;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -238,7 +239,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;
+            index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;
             if (unity_editor_current_scales[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -246,7 +247,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.L) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.NINE;
+            index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;
             if (unity_editor_current_scales[index].Count != 0)
             {                
                 JudgeAccuracy(index);              
