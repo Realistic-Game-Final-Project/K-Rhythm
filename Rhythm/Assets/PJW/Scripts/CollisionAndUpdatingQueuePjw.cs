@@ -27,10 +27,10 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
         Destroy(collision.gameObject);
     }
 
-       private void PopFromSelectedQueue(string tag)
+    private void PopFromSelectedQueue(string tag)
     {       
         int index = gayageum_scale_tag_between_queue_index[tag];  
-        RhythmGameOnSelectedSheetPjw.Instance.unity_editor_current_scales[index].Dequeue();
-        RhythmGameOnSelectedSheetPjw.Instance.unity_editor_current_scales_gameobject[index].Dequeue();
+        RhythmGameOnSelectedSheetPjw.Instance.unity_editor_current_scales_gayageum[index].Dequeue();
+        RhythmGameOnSelectedSheetPjw.Instance.unity_editor_current_scales_gameobject_gayageum[index].Dequeue();
     } 
 }

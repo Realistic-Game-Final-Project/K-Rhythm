@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum GAYAGEUM_SCALE_NUMBER //가야금 음을 한국말로 모름 
+//가야금의 음계를 자료구조에 저장 시키기 때문에 -1을 해줍니다.
+enum GAYAGEUM_SCALE_NUMBER 
 {
     FOUR = 3,
     FIVE = 4,
@@ -14,6 +15,21 @@ enum GAYAGEUM_SCALE_NUMBER //가야금 음을 한국말로 모름
     TEN = 9,
     ELEVEN = 10,
     TWELVE = 11
+}
+
+//방향도 자료구조에 저장 하므로 0부터 시작하므로 -1을 하고 
+//기본적으로 샾,플랫이 없음
+enum BANGHYANG_SCALE_NUMBER
+{
+    ONE = 0,
+    THREE = 2,
+    FIVE = 4,
+    SIX = 5,
+    EIGHT = 7,
+    TEN = 9,
+    TWELVE = 11,
+    THIRTEEN = 12,
+    FIFTEEN = 14
 }
 
 enum SCALE_ACCURACY_EASY
