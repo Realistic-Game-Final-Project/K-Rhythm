@@ -4,11 +4,14 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*이 스크립트는 분할 되어야 함.
-현재 음악 데이터를 json에서 읽어오고 , static에 저장하는 기능과
-게임의 배경음악을 재생하는 걸 동시에 같은 스크립트에서 구현 하고 있음
-하지만 배경음악 재생을 분리하는 작업이 생각보다 ERROR를 일으킬 것 같으므로 추후에
-*/
+/*
+ * RhythmGameOnBanghyangPjw 와 RhythmGameOnSelectedSheetPjw는 비슷한 작업을 함에도 불구하고
+ * 내 판단하에 스크립트를 분할 시켰다. 이 둘은 사용자가 선택한 악기에 따라 같은 함수를 호출하지만
+ * 연결된 객체들이 모두 달라서 구분했다.
+ * 그러나 해당 스크립트들을 모두 싱글턴으로 구현했고 , 이를 BackgroundMusic(현재 스크립트)에서 
+ * 호출하는데 , 결국 if-else의 분기가 발생한다.
+ * 이런걸 어떻게 구현할지는 공부가 더 필요할 듯 하다.
+ */
 
 [System.Serializable]
 public class BackgroundMusicData
@@ -56,12 +59,22 @@ public class BackgroundMusic : MonoBehaviour
 
     //BackgroundMusic이 시작되면 악보의 게임도 시작됩니다.
     //일단은 space 눌러야 겜 시작함.
+    //음악 안고르고(SelectMusicPjwScript를 안거치고) space 누르면 에러남. 어차피 space 누르면 나오도록 구현 안할꺼임
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) == true) //Space 누르면 시작하도록 일단 테스트
+        if (Input.GetKeyDown(KeyCode.Space) == true) 
         {
             StartCoroutine("AutoPlayBackgroundmusic");
-            RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine(); //내가 짰는데 신기하게 악보랑 배경음이랑 같은 음악을 잘 재생함.
+
+            //두 개의 코루틴("Auto~" , OrderFor~에서 호출하는 코루틴)은 동시에 돌아야 합니다.
+            if (StaticDataPjw.is_gayageum_selected == true)
+            {
+                RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine();
+            }
+            else if (StaticDataPjw.is_banghyang_selected == true)
+            {
+                RhythmGameOnBanghyangPjw.Instance.OrderForStartingCoroutine();
+            }         
         }
     }
 
@@ -92,19 +105,34 @@ public class BackgroundMusic : MonoBehaviour
             {
                 MusicDataPjw.music_inuyasha.Add(new Tuple<int, float>(mytext.music[i].scale, mytext.music[i].beat));
             }
-            RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();
+            if (StaticDataPjw.is_gayageum_selected == true)
+            {
+                RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();
+            }
+            else if (StaticDataPjw.is_banghyang_selected == true)
+            {
+                RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
+            }         
         }
         else if (selected_music_index == (int)MUSIC_NUMBER.LETITGO)
         {
             textdata = Resources.Load("LetItGo") as TextAsset;
             mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
+            Debug.Log("1");
             SetSelectedMusicNumber((int)MUSIC_NUMBER.LETITGO);
-     
+            Debug.Log("2");
             for (int i = 0; i < mytext.music.Length; i++)
             {
                 MusicDataPjw.music_letitgo.Add(new Tuple<int, float>(mytext.music[i].scale, mytext.music[i].beat));
             }
-            RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();           
+            if (StaticDataPjw.is_gayageum_selected == true)
+            {
+                RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();
+            }
+            else if (StaticDataPjw.is_banghyang_selected == true)
+            {
+                RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
+            }
         }
         else //CANNON
         {
@@ -133,7 +161,14 @@ public class BackgroundMusic : MonoBehaviour
     }
     private void SetSelectedMusicNumber(int num)
     {
-        RhythmGameOnSelectedSheetPjw.Instance.selected_music_number = num;
+        if (StaticDataPjw.is_gayageum_selected == true)
+        {
+            RhythmGameOnSelectedSheetPjw.Instance.selected_music_number = num;
+        }
+        else if (StaticDataPjw.is_banghyang_selected == true)
+        {
+            RhythmGameOnBanghyangPjw.Instance.selected_music_number = num;
+        }       
     }
     
     private int ReturnSoundManagerNumber()
@@ -148,13 +183,12 @@ public class BackgroundMusic : MonoBehaviour
     {
         /*
          *TODO : Music end -> Coroutine end
-         */        
+         */
         const float BEAT_DELAY_DIVISION = 4f;
-
+        coroutine_obj = AutoPlayBackgroundmusic();
         int cur_sound_manager_number = ReturnSoundManagerNumber(); // 1 ~ 14
         sound_manager_number++; 
-        coroutine_obj = AutoPlayBackgroundmusic();
-       
+               
         //rest
         if (mytext.music[music_index].scale == 0)
         {
@@ -172,7 +206,6 @@ public class BackgroundMusic : MonoBehaviour
         StartCoroutine(AutoPlayBackgroundmusic());
         yield return new WaitForSeconds(mytext.music[music_index].beat / BEAT_DELAY_DIVISION);
         StopCoroutine(coroutine_obj);
-        mp3[cur_sound_manager_number].Stop();        
-        //yield return new WaitForSeconds(mytext.music[music_index].beat / 10f);            
+        mp3[cur_sound_manager_number].Stop();      
     }
 }
