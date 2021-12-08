@@ -7,8 +7,10 @@ public class SelectMusicPjw : MonoBehaviour
 {
     private const int TIME_COUNT = 4;
     private const int BUTTON_COUNT = 3;
+    private const int BANGHYANG_SHEET_CANVAS_CHILDS_COUNT = 2;
     private const int GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT = 3;
     private GameObject[] gayageum_sheet_canvas_childs = new GameObject[GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT];
+    private GameObject[] banghyang_sheet_canvas_childs = new GameObject[GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT];
     [SerializeField] private Canvas select_music_and_timer_canvas;
     [SerializeField] private Button[] music_buttons = new Button[BUTTON_COUNT];
     [SerializeField] private Text announcement_text;
@@ -77,10 +79,29 @@ public class SelectMusicPjw : MonoBehaviour
     //static으로 찾아서 변경
     private void StartGame()
     {
-        for (int i = 0; i < GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT; i++)
+        // TEST CODE
+        // 악기 선택하는 부분을 스킵하기 위해 테스트 코드        
+        //1. 가야금 선택
+        StaticDataPjw.is_gayageum_selected = true;
+        //2. 방향 선택
+        //StaticDataPjw.is_banghyang_selected = true;
+
+        if (StaticDataPjw.is_gayageum_selected == true)
         {
-            gayageum_sheet_canvas_childs[i] = GameObject.Find("Gayageum_Sheet_Canvas").transform.GetChild(i).gameObject;
-            gayageum_sheet_canvas_childs[i].SetActive(true);
+            for (int i = 0; i < GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT; i++)
+            {
+                gayageum_sheet_canvas_childs[i] = GameObject.Find("Gayageum_Sheet_Canvas").transform.GetChild(i).gameObject;
+                gayageum_sheet_canvas_childs[i].SetActive(true);
+            }
+        }
+        else if(StaticDataPjw.is_banghyang_selected == true)
+        {
+            Debug.Log("bang향");
+            for (int i = 0; i < BANGHYANG_SHEET_CANVAS_CHILDS_COUNT; i++)
+            {
+                gayageum_sheet_canvas_childs[i] = GameObject.Find("Banghyang_Sheet_Canvas").transform.GetChild(i).gameObject;
+                gayageum_sheet_canvas_childs[i].SetActive(true);
+            }
         }
         BackgroundMusic.Instance.SelectMusicAndSaveStaticContainers();
     }
