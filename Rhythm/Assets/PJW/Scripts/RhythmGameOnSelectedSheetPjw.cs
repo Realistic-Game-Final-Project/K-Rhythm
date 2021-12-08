@@ -35,6 +35,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     [SerializeField] Transform[] starting_points = new Transform[GAYAGEUM_SCALES_COUNT];
     [SerializeField] Transform[] end_points = new Transform[GAYAGEUM_SCALES_COUNT];
     [SerializeField] GameObject note = null;
+    [SerializeField] private AudioSource mp3;
         
     private Vector3[] print_locations = new Vector3[GAYAGEUM_SCALES_COUNT];
     private Dictionary<int, int> gayageum_scale_dictionary = new Dictionary<int, int>();
@@ -124,14 +125,10 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         {
             selected_list = MusicDataPjw.music_letitgo;
         }
-        else if (selected_music_number == (int)MUSIC_NUMBER.LETITGO)
+        else if (selected_music_number == (int)MUSIC_NUMBER.CANNON)
         {
-            selected_list = MusicDataPjw.music_tmp;
-        }
-        /*foreach(var i in selected_list)
-        {
-            Debug.Log(i.Item1 + " " + i.Item2);
-        }*/
+            selected_list = MusicDataPjw.music_cannon;
+        }     
     }
 
     public void OrderForStartingCoroutine()
@@ -147,8 +144,7 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         for(int i=0; i<selected_list.Count; i++)
         {
             index = gayageum_scale_dictionary[selected_list[i].Item1];
-            beat_value = selected_list[i].Item2;
-            //Debug.Log(beat_value);
+            beat_value = selected_list[i].Item2;        
             
             if (index == -1)
             {
@@ -173,13 +169,19 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         unity_editor_current_scales_gameobject_gayageum[index].Enqueue(note_prefab_gameobject);
     }
 
-    //이것도 CollisionAndUpdatingQueuePjw 처럼 만들어도 좋을듯
+    /*
+     * 1. Index는 배경음인 소금과 해당 악기의 치는음에 대한 관계 자료구조 : A-(int)GAYAGEUM_SCALE_NUMBER.ONE , S-(int)GAYAGEUM_SCALE_NUMBER.TWO , ...
+     * 2. PlaySound(i) : i는 AudioClipsGroupPjw의 AudioSource에 저장된 실제 음원의 순서. 이건 당연히 0부터 저장되므로 i는 0부터 순서대로
+     * 총평 : 이 데이터를 하나의 구조체나 클래스로 묶었다면 더 좋았을 듯.
+     */
+
     //vr에서 collider로 구현되니 많이 바꿀듯
-    private void CheckInputs() //A-(int)GAYAGEUM_SCALE_NUMBER.ONE , S-(int)GAYAGEUM_SCALE_NUMBER.TWO , ...
+    private void CheckInputs() 
     {
         int index = 0;
         if(Input.GetKeyDown(KeyCode.A) == true)
         {
+            PlaySound(0);
             index = (int)GAYAGEUM_SCALE_NUMBER.FOUR;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
@@ -188,7 +190,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;
+            PlaySound(1);
+            index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;       
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -196,7 +199,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.SIX;
+            PlaySound(2);
+            index = (int)GAYAGEUM_SCALE_NUMBER.SIX;      
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -204,7 +208,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;
+            PlaySound(3);
+            index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;       
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -212,7 +217,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;
+            PlaySound(4);
+            index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;       
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -220,7 +226,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.NINE;
+            PlaySound(5);
+            index = (int)GAYAGEUM_SCALE_NUMBER.NINE;     
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -228,7 +235,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.J) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.TEN;
+            PlaySound(6);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TEN;     
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -236,7 +244,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;
+            PlaySound(7);
+            index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;   
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -244,7 +253,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.L) == true)
         {
-            index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;
+            PlaySound(8);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;      
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {                
                 JudgeAccuracy(index);              
@@ -275,8 +285,10 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }        
     }
   
-    private void PlaySound()
+    private void PlaySound(int index)
     {
-
+        Debug.Log(AudioClipsGroupPjw.Instance.gayageum_audio_clips[index] + " " + index);
+        AudioClipsGroupPjw.Instance.speaker_for_playing_game.clip = AudioClipsGroupPjw.Instance.gayageum_audio_clips[index];
+        AudioClipsGroupPjw.Instance.speaker_for_playing_game.Play();
     }
 }

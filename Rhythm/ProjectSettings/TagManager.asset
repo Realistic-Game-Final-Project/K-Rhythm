@@ -27,6 +27,10 @@ TagManager:
   - Yonggo
   - Gayageum
   - Janggu
+  - end_12
+  - end_13
+  - end_14
+  - end_15
   layers:
   - Default
   - TransparentFX

@@ -31,7 +31,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
     private Vector3[] print_locations = new Vector3[BANGHYANG_SCALES_COUNT];
     private Dictionary<int, int> banghyang_scale_dictionary = new Dictionary<int, int>();
     public Queue<Transform>[] unity_editor_current_scales_banghyang = new Queue<Transform>[BANGHYANG_SCALES_COUNT]; //using CollisionAndUpdatingQueuePjw Class
-    public Queue<GameObject>[] unity_editor_current_scales_gameobject_banghyang = new Queue<GameObject>[BANGHYANG_SCALES_COUNT]; //최적화를 위해 따로 저장
+    public Queue<GameObject>[] unity_editor_current_scales_gameobject_banghyang = new Queue<GameObject>[BANGHYANG_SCALES_COUNT]; //최적화를 위해 따로 저장   
 
     public int perfect_count { get; private set; }
     public int great_count { get; private set; }
@@ -117,14 +117,10 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         {
             selected_list = MusicDataPjw.music_letitgo;
         }
-        else if (selected_music_number == (int)MUSIC_NUMBER.LETITGO)
+        else if (selected_music_number == (int)MUSIC_NUMBER.CANNON)
         {
-            selected_list = MusicDataPjw.music_tmp;
-        }
-        /*foreach(var i in selected_list)
-        {
-            Debug.Log(i.Item1 + " " + i.Item2);
-        }*/
+            selected_list = MusicDataPjw.music_cannon;
+        }    
     }
 
     public void OrderForStartingCoroutine()
@@ -141,17 +137,16 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         {
             index = banghyang_scale_dictionary[selected_list[i].Item1];
             beat_value = selected_list[i].Item2;
-            //Debug.Log(beat_value);
-
+           
             if (index == -1)
             {
                 yield return new WaitForSeconds(beat_value);
                 continue;
             }
 
-            GameObject note_prefab = Instantiate(note, starting_points[index].position, new Quaternion(0, 0, 0, 0)); //spawn
+            GameObject note_prefab = Instantiate(note, starting_points[index].position, new Quaternion(0, 0, 0, 0)); //spawn        
             note_prefab.transform.localScale *= SCALE_SIZE_MULTIPLY;
-            note_prefab.transform.SetParent(this.transform);
+            note_prefab.transform.SetParent(this.transform);        
             FillUnityEditorCurrentScales(index, note_prefab.transform, note_prefab);
 
             yield return new WaitForSeconds(beat_value);
@@ -173,7 +168,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         int index = 0;
         if (Input.GetKeyDown(KeyCode.A) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.ONE;
+            index = (int)BANGHYANG_SCALE_NUMBER.ONE;          
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -181,7 +176,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.THREE;
+            index = (int)BANGHYANG_SCALE_NUMBER.THREE;          
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -189,7 +184,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.FIVE;
+            index = (int)BANGHYANG_SCALE_NUMBER.FIVE;       
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -197,7 +192,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.SIX;
+            index = (int)BANGHYANG_SCALE_NUMBER.SIX;          
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -205,7 +200,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.G) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.EIGHT;
+            index = (int)BANGHYANG_SCALE_NUMBER.EIGHT;          
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -213,7 +208,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.TEN;
+            index = (int)BANGHYANG_SCALE_NUMBER.TEN;        
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -221,7 +216,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.J) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.TWELVE;
+            index = (int)BANGHYANG_SCALE_NUMBER.TWELVE;     
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -229,7 +224,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.THIRTEEN;
+            index = (int)BANGHYANG_SCALE_NUMBER.THIRTEEN;        
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -237,7 +232,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.L) == true)
         {
-            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;
+            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;        
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -248,12 +243,12 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
     //악보에 음 없을 때 누르는건 아래의 함수가 작동하지 않음.
     private void JudgeAccuracy(int index)
     {
-        float accuracy_value = end_points[index].position.x - unity_editor_current_scales_banghyang[index].Peek().position.x;
+        float accuracy_value = end_points[index].position.y - unity_editor_current_scales_banghyang[index].Peek().position.y;
         accuracy_value = Math.Abs(accuracy_value);
 
         if (accuracy_value <= (float)SCALE_ACCURACY_EASY.EASY_PERFECT)
         {
-            perfect_count++;
+            perfect_count++;            
             Debug.Log(accuracy_value + " perfect");
         }
         else if ((float)SCALE_ACCURACY_EASY.EASY_PERFECT < accuracy_value && accuracy_value < (float)SCALE_ACCURACY_EASY.EASY_GREAT)
@@ -268,8 +263,10 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         }
     }
 
-    private void PlaySound()
+    private void PlaySound(int index)
     {
-
+        Debug.Log("why");
+        AudioClipsGroupPjw.Instance.speaker_for_playing_game.clip = AudioClipsGroupPjw.Instance.banghyang_audio_clips[index];
+        AudioClipsGroupPjw.Instance.speaker_for_playing_game.Play();
     }
 }

@@ -74,7 +74,6 @@ public class SelectMusicPjw : MonoBehaviour
         yield return null;
     }
     
-
     //일단은 가야금으로만 구현
     //static으로 찾아서 변경
     private void StartGame()
@@ -82,9 +81,9 @@ public class SelectMusicPjw : MonoBehaviour
         // TEST CODE
         // 악기 선택하는 부분을 스킵하기 위해 테스트 코드        
         //1. 가야금 선택
-        StaticDataPjw.is_gayageum_selected = true;
+        //StaticDataPjw.is_gayageum_selected = true;
         //2. 방향 선택
-        //StaticDataPjw.is_banghyang_selected = true;
+        StaticDataPjw.is_banghyang_selected = true;
 
         if (StaticDataPjw.is_gayageum_selected == true)
         {
@@ -96,7 +95,6 @@ public class SelectMusicPjw : MonoBehaviour
         }
         else if(StaticDataPjw.is_banghyang_selected == true)
         {
-            Debug.Log("bang향");
             for (int i = 0; i < BANGHYANG_SHEET_CANVAS_CHILDS_COUNT; i++)
             {
                 gayageum_sheet_canvas_childs[i] = GameObject.Find("Banghyang_Sheet_Canvas").transform.GetChild(i).gameObject;
