@@ -34,23 +34,7 @@ public class UIManagerPjw : MonoBehaviour
     {
         Initialize();
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape) == true)
-        {
-            if (is_game_paused == false)
-            {
-                is_game_paused = true;
-                PauseGame();
-            }
-            else
-            {
-                is_game_paused = false;
-                RestartGame();
-            }
-        }
-    }
-
+   
     private void Initialize()
     {
         for (int i = 0; i < INSTRUMENTS_COUNT; i++)
