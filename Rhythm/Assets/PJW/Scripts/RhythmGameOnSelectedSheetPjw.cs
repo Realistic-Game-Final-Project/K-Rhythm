@@ -143,6 +143,20 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
 
         for(int i=0; i<selected_list.Count; i++)
         {
+            //Test
+            if (i == 5)
+            {
+                Debug.Log("가야금 종료");
+                WorksAfterGameEnd();
+                break;
+            }
+            //음악 종료
+            if (selected_list[i].Item1 == -1)
+            {                
+                WorksAfterGameEnd();
+                break;
+            }
+
             index = gayageum_scale_dictionary[selected_list[i].Item1];
             beat_value = selected_list[i].Item2;        
             
@@ -160,6 +174,14 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
             yield return new WaitForSeconds(beat_value);
         }     
         yield return null;
+    }
+
+    private void WorksAfterGameEnd()
+    {
+        GameManagerPjw.Instance.is_game_ended = true;
+        gameObject.SetActive(false);
+        ScoreManagerPjw.Instance.MeasureScore(perfect_count, great_count, miss_count);
+        GameManagerPjw.Instance.ShowScoreBoard();
     }
 
     //유니티 에디터의 UI에 존재하는 음표들을 자료구조에 저장하는 함수
@@ -288,7 +310,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
   
     private void PlaySound(int index)
     {
-        Debug.Log(AudioClipsGroupPjw.Instance.gayageum_audio_clips[index] + " " + index);
         AudioClipsGroupPjw.Instance.speaker_for_playing_game.clip = AudioClipsGroupPjw.Instance.gayageum_audio_clips[index];
         AudioClipsGroupPjw.Instance.speaker_for_playing_game.Play();
     }

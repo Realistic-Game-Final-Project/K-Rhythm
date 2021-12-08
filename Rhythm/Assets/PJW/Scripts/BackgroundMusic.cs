@@ -49,45 +49,20 @@ public class BackgroundMusic : MonoBehaviour
     private int music_index = 0;
     private int sound_manager_number = 0;
     private IEnumerator coroutine_obj;
-    
+  
     private void Awake()
     {
         Initialize();      
     }
-
-    //BackgroundMusic이 시작되면 악보의 게임도 시작됩니다.
-    //일단은 space 눌러야 겜 시작함.
-    //음악 안고르고(SelectMusicPjwScript를 안거치고) space 누르면 에러남. 어차피 space 누르면 나오도록 구현 안할꺼임
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) == true) 
-        {
-            StartCoroutine("AutoPlayBackgroundmusic");
-
-            //두 개의 코루틴("Auto~" , OrderFor~에서 호출하는 코루틴)은 동시에 돌아야 합니다.
-            if (StaticDataPjw.is_gayageum_selected == true)
-            {
-                RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine();
-            }
-            else if (StaticDataPjw.is_banghyang_selected == true)
-            {
-                RhythmGameOnBanghyangPjw.Instance.OrderForStartingCoroutine();
-            }   
-            //TODO : 장구에서 만든 코루틴을 수행
-            else
-            {
-
-            }
-        }
-    }
-
+    
     private void Initialize()
     {
         for (int i = 0; i < AUDIO_SOURCE_COUNT; i++)
         {
             mp3 = gameObject.GetComponents<AudioSource>();
-        }                
+        }        
     }
+
 
     //함수 분할 했어야...
     public void SelectMusicAndSaveStaticContainers()
@@ -154,8 +129,31 @@ public class BackgroundMusic : MonoBehaviour
                 RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
             }
         }
+
+        StartTwoCoroutinesAtSameTime();
     }
 
+    //두 개의 코루틴("Auto~" , OrderFor~에서 호출하는 코루틴)은 배경음악과 , 악보에서 게임 재생이며
+    //동시에 돌아야 합니다.
+    private void StartTwoCoroutinesAtSameTime()
+    {
+        
+        StartCoroutine("AutoPlayBackgroundmusic");
+        
+        if (StaticDataPjw.is_gayageum_selected == true)
+        {
+            RhythmGameOnSelectedSheetPjw.Instance.OrderForStartingCoroutine();
+        }
+        else if (StaticDataPjw.is_banghyang_selected == true)
+        {
+            RhythmGameOnBanghyangPjw.Instance.OrderForStartingCoroutine();
+        }
+        //TODO : 장구에서 만든 코루틴을 수행
+        else
+        {
+
+        }      
+    }
     private int GetMusicDataFromStatic()
     {
         if (StaticDataPjw.is_inuyasha_selected == true)
@@ -196,12 +194,17 @@ public class BackgroundMusic : MonoBehaviour
         return sound_manager_number;
     }
     IEnumerator AutoPlayBackgroundmusic()
-    {
-        /*
-         *TODO : Music end -> Coroutine end
-         */
+    {      
         const float BEAT_DELAY_DIVISION = 4f;
+
         coroutine_obj = AutoPlayBackgroundmusic();
+        //음악종료
+        if (mytext.music[music_index].beat == -1)
+        {
+            StopCoroutine(coroutine_obj);
+            //yield return으로는 제어권을 넘겨주기만 하고 아래의 코드가 동작하므로 에러가 나므로 , 강제로 코루틴 종료
+        }
+
         int cur_sound_manager_number = ReturnSoundManagerNumber(); // 1 ~ 14
         sound_manager_number++; 
                
