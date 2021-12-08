@@ -53,5 +53,5 @@ enum MUSIC_NUMBER
 public class StaticDataPjw : MonoBehaviour
 {
     public static bool is_banghyang_selected, is_gayageum_selected, is_janggu_selected;
-    public static bool is_inuyasha_selected, is_letitgo_selected, is_cannon_selected;
+    public static bool is_inuyasha_selected, is_letitgo_selected, is_cannon_selected;    
 }

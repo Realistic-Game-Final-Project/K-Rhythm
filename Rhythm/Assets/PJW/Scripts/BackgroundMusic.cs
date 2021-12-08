@@ -28,7 +28,6 @@ public class MyTextDataArray
 
 public class BackgroundMusic : MonoBehaviour
 {
-    //TODO : don't have to singleton
     private static BackgroundMusic instance;
     public static BackgroundMusic Instance
     {
@@ -43,7 +42,6 @@ public class BackgroundMusic : MonoBehaviour
     }
 
     public const int AUDIO_SOURCE_COUNT = 14;
-
     TextAsset textdata;
     public MyTextDataArray mytext { get; private set; } //get another script  
     public new AudioClip[] audio;
@@ -74,7 +72,12 @@ public class BackgroundMusic : MonoBehaviour
             else if (StaticDataPjw.is_banghyang_selected == true)
             {
                 RhythmGameOnBanghyangPjw.Instance.OrderForStartingCoroutine();
-            }         
+            }   
+            //TODO : 장구에서 만든 코루틴을 수행
+            else
+            {
+
+            }
         }
     }
 
@@ -86,10 +89,11 @@ public class BackgroundMusic : MonoBehaviour
         }                
     }
 
+    //함수 분할 했어야...
     public void SelectMusicAndSaveStaticContainers()
     {
         int selected_music_index = GetMusicDataFromStatic();
-        Debug.Log("음악 고름" + selected_music_index);
+        Debug.Log("음악 번호 1~3 :  " + selected_music_index);
         if(selected_music_index == -1)
         {
             Debug.Log("MUSIC SELECT ERROR !");
@@ -117,10 +121,8 @@ public class BackgroundMusic : MonoBehaviour
         else if (selected_music_index == (int)MUSIC_NUMBER.LETITGO)
         {
             textdata = Resources.Load("LetItGo") as TextAsset;
-            mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
-            Debug.Log("1");
-            SetSelectedMusicNumber((int)MUSIC_NUMBER.LETITGO);
-            Debug.Log("2");
+            mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());        
+            SetSelectedMusicNumber((int)MUSIC_NUMBER.LETITGO);  
             for (int i = 0; i < mytext.music.Length; i++)
             {
                 MusicDataPjw.music_letitgo.Add(new Tuple<int, float>(mytext.music[i].scale, mytext.music[i].beat));
@@ -134,9 +136,23 @@ public class BackgroundMusic : MonoBehaviour
                 RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
             }
         }
-        else //CANNON
+        else if (selected_music_index == (int)MUSIC_NUMBER.CANNON) 
         {
-
+            textdata = Resources.Load("Cannon") as TextAsset;
+            mytext = JsonUtility.FromJson<MyTextDataArray>(textdata.ToString());
+            SetSelectedMusicNumber((int)MUSIC_NUMBER.CANNON);
+            for (int i = 0; i < mytext.music.Length; i++)
+            {
+                MusicDataPjw.music_cannon.Add(new Tuple<int, float>(mytext.music[i].scale, mytext.music[i].beat));
+            }
+            if (StaticDataPjw.is_gayageum_selected == true)
+            {
+                RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();
+            }
+            else if (StaticDataPjw.is_banghyang_selected == true)
+            {
+                RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
+            }
         }
     }
 
@@ -202,7 +218,7 @@ public class BackgroundMusic : MonoBehaviour
             mp3[cur_sound_manager_number].Play();
         }        
         yield return new WaitForSeconds(mytext.music[music_index].beat);
-        music_index++; //if game end -> let music_index 0 (this makes ERROR)
+        music_index++; 
         StartCoroutine(AutoPlayBackgroundmusic());
         yield return new WaitForSeconds(mytext.music[music_index].beat / BEAT_DELAY_DIVISION);
         StopCoroutine(coroutine_obj);
