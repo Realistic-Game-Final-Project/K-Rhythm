@@ -82,6 +82,7 @@ public class BackgroundMusic : MonoBehaviour
      
             for (int i = 0; i < mytext.music.Length; i++)
             {
+                Debug.Log("input datas");
                 MusicDataPjw.music_inuyasha.Add(new Tuple<int, float>(mytext.music[i].scale, mytext.music[i].beat));
             }
             if (StaticDataPjw.is_gayageum_selected == true)
