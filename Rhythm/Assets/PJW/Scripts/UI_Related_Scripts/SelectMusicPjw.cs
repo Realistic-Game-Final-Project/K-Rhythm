@@ -86,9 +86,9 @@ public class SelectMusicPjw : MonoBehaviour
     {      
         //다른 Scene을 이용해야 하므로 Test - Code
         //1. 가야금 선택
-        StaticDataPjw.is_gayageum_selected = true;
+        //StaticDataPjw.is_gayageum_selected = true;
         //2. 방향 선택
-        //StaticDataPjw.is_banghyang_selected = true;
+        StaticDataPjw.is_banghyang_selected = true;
 
         if (StaticDataPjw.is_gayageum_selected == true)
         {
