@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayBangHyang : MonoBehaviour
 {
-    public const int SCALES_COUNT = 8; //maybe 16?
+    public const int SCALES_COUNT = 16; //maybe 16?
     
     private Transform hitting_point_parent;
     private GameObject[] hitting_points = new GameObject[SCALES_COUNT];

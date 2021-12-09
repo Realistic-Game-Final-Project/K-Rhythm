@@ -5,14 +5,14 @@ using UnityEngine;
 public class IntruControl_Lee : MonoBehaviour
 {
     public const string banghyang_scale_tag = "BangHyangScale";
-    public const string janggu_scale_tag = "JangguScale";
+    public const string janggu_scale_tag = "JangGuScale";
     public const string gayageum_scale_tag = "GayageumScale";
 
     public PlayBangHyang play_banghyang_script;
     public PlayJangGu play_janggu_script;
     public PlayGayageum play_gayageum_script;
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider collision) 
     {
         ExamineInstrumentType(collision.gameObject.tag, collision.gameObject);
     }
