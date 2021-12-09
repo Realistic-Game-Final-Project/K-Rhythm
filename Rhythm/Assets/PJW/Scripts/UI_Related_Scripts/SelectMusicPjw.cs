@@ -90,9 +90,9 @@ public class SelectMusicPjw : MonoBehaviour
         //1. 가야금 선택
         //StaticDataPjw.is_gayageum_selected = true;
         //2. 방향 선택
-        //StaticDataPjw.is_banghyang_selected = true;
+        StaticDataPjw.is_banghyang_selected = true;
         //3. 장구 선택
-        StaticDataPjw.is_janggu_selected = true;
+        //StaticDataPjw.is_janggu_selected = true;
 
 
         if (StaticDataPjw.is_gayageum_selected == true)
