@@ -9,7 +9,11 @@ public class PController : MonoBehaviour
     [SerializeField]
     private GameObject BangHangCha;
     [SerializeField]
+    private GameObject JangguHand;
+    [SerializeField]
     private Animator LHand;
+    [SerializeField]
+    private Animator RHand;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +25,8 @@ public class PController : MonoBehaviour
         else if(other.gameObject.tag == "Janggu")
         {
             GanguCha.SetActive(true);
-            LHand.SetBool("Hold", true);
+            JangguHand.SetActive(true);
+            RHand.SetBool("Hold", true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -34,7 +39,8 @@ public class PController : MonoBehaviour
         else if (other.gameObject.tag == "Janggu")
         {
             GanguCha.SetActive(false);
-            LHand.SetBool("Hold", false);
+            JangguHand.SetActive(false);
+            RHand.SetBool("Hold", false);
         }
     }
 }

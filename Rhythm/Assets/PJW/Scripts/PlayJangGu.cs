@@ -11,6 +11,8 @@ public class PlayJangGu : MonoBehaviour
     public AudioClip[] clips = new AudioClip[SCALES_COUNT];
     private Dictionary<GameObject, AudioClip> music_dictionary = new Dictionary<GameObject, AudioClip>();
     private AudioSource mp3;
+    [SerializeField]
+    private AudioSource mp31;
 
     private void Awake()
     {
@@ -20,7 +22,7 @@ public class PlayJangGu : MonoBehaviour
     private void Initialize()
     {
         hitting_point_parent = GameObject.FindGameObjectWithTag("HittingPointJanggu").transform;
-        Debug.Log(hitting_point_parent.name);
+        //Debug.Log(hitting_point_parent.name);
         mp3 = gameObject.GetComponent<AudioSource>();
         for (int i = 0; i < SCALES_COUNT; i++) //using index , never change
         {
@@ -35,8 +37,16 @@ public class PlayJangGu : MonoBehaviour
         {
             Debug.Log(a.Key + " " + a.Value);
         }*/
-
-        mp3.clip = music_dictionary[scale_object];
-        mp3.Play(); //don't have to set end-time.
+        if(scale_object == hitting_point_parent.GetChild(0).gameObject)
+        {
+            mp3.clip = music_dictionary[scale_object];
+            mp3.Play(); //don't have to set end-time.
+        }
+        else
+        {
+            mp31.clip = music_dictionary[scale_object];
+            mp31.Play();
+        }
+       
     }
 }

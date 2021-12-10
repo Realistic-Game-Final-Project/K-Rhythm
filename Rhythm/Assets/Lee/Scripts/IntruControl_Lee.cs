@@ -26,9 +26,8 @@ public class IntruControl_Lee : MonoBehaviour
         }
         else if (tag == janggu_scale_tag)
         {
-            /*
-             * TODO : janggu
-             */
+            Debug.Log(tag + "  " + scale_object.name);
+            play_janggu_script.PlayInstrument(scale_object);
         }
         else if (tag == gayageum_scale_tag)
         {
