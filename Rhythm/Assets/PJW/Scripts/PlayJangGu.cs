@@ -41,11 +41,13 @@ public class PlayJangGu : MonoBehaviour
         {
             mp3.clip = music_dictionary[scale_object];
             mp3.Play(); //don't have to set end-time.
+            //OVRInput.SetControllerVibration(0.1f, 0.5f, OVRInput.Controller.LTouch);
         }
         else
         {
             mp31.clip = music_dictionary[scale_object];
             mp31.Play();
+            //OVRInput.SetControllerVibration(0.1f, 0.5f, OVRInput.Controller.RTouch);
         }
        
     }

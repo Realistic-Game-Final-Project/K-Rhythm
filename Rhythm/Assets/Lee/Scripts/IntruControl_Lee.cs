@@ -23,6 +23,8 @@ public class IntruControl_Lee : MonoBehaviour
         {
             Debug.Log(tag + "  " + scale_object.name);
             play_banghyang_script.PlayInstrument(scale_object);
+            //OVRInput.SetControllerVibration(1f, 0.5f, OVRInput.Controller.LTouch);
+            
         }
         else if (tag == janggu_scale_tag)
         {
