@@ -48,10 +48,10 @@ public class BackgroundMusic : MonoBehaviour
     private AudioSource[] mp3 = new AudioSource[AUDIO_SOURCE_COUNT];    
     private int music_index = 0;
     private int sound_manager_number = 0;
-    private IEnumerator coroutine_obj;
-  
+    private IEnumerator coroutine_obj; 
+
     private void Awake()
-    {
+    {        
         Initialize();      
     }
     
@@ -60,9 +60,8 @@ public class BackgroundMusic : MonoBehaviour
         for (int i = 0; i < AUDIO_SOURCE_COUNT; i++)
         {
             mp3 = gameObject.GetComponents<AudioSource>();
-        }        
+        }       
     }
-
 
     //함수 분할 했어야...
     public void SelectMusicAndSaveStaticContainers()
@@ -82,9 +81,8 @@ public class BackgroundMusic : MonoBehaviour
      
             for (int i = 0; i < mytext.music.Length; i++)
             {
-                Debug.Log("input datas");
                 MusicDataPjw.music_inuyasha.Add(new Tuple<int, float>(mytext.music[i].scale, mytext.music[i].beat));
-            }
+            }          
             if (StaticDataPjw.is_gayageum_selected == true)
             {
                 RhythmGameOnSelectedSheetPjw.Instance.CheckLoadDataSuccess();
@@ -92,7 +90,11 @@ public class BackgroundMusic : MonoBehaviour
             else if (StaticDataPjw.is_banghyang_selected == true)
             {
                 RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
-            }         
+            }            
+            else if (StaticDataPjw.is_janggu_selected == true)
+            {
+                NoteManager_Lee.Instance.CheckLoadDataSuccess();
+            }
         }
         else if (selected_music_index == (int)MUSIC_NUMBER.LETITGO)
         {
@@ -110,6 +112,10 @@ public class BackgroundMusic : MonoBehaviour
             else if (StaticDataPjw.is_banghyang_selected == true)
             {
                 RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
+            }
+            else if (StaticDataPjw.is_janggu_selected == true)
+            {
+                NoteManager_Lee.Instance.CheckLoadDataSuccess();
             }
         }
         else if (selected_music_index == (int)MUSIC_NUMBER.CANNON) 
@@ -129,16 +135,18 @@ public class BackgroundMusic : MonoBehaviour
             {
                 RhythmGameOnBanghyangPjw.Instance.CheckLoadDataSuccess();
             }
+            else if (StaticDataPjw.is_janggu_selected == true)
+            {
+                NoteManager_Lee.Instance.CheckLoadDataSuccess();
+            }
         }
-
         StartTwoCoroutinesAtSameTime();
     }
 
     //두 개의 코루틴("Auto~" , OrderFor~에서 호출하는 코루틴)은 배경음악과 , 악보에서 게임 재생이며
     //동시에 돌아야 합니다.
     private void StartTwoCoroutinesAtSameTime()
-    {
-        
+    {        
         StartCoroutine("AutoPlayBackgroundmusic");
         
         if (StaticDataPjw.is_gayageum_selected == true)
@@ -149,10 +157,10 @@ public class BackgroundMusic : MonoBehaviour
         {
             RhythmGameOnBanghyangPjw.Instance.OrderForStartingCoroutine();
         }
-        //TODO : 장구에서 만든 코루틴을 수행
+        //TODO : 주엽이가 장구에서 만든 코루틴을 수행
         else
         {
-
+            NoteManager_Lee.Instance.StartNoteGameCoroutine();
         }      
     }
     private int GetMusicDataFromStatic()
