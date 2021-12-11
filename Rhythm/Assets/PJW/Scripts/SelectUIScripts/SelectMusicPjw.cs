@@ -14,9 +14,7 @@ public class SelectMusicPjw : MonoBehaviour
 
     private GameObject[] gayageum_sheet_canvas_childs = new GameObject[GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT];
     private GameObject[] banghyang_sheet_canvas_childs = new GameObject[GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT];
-    [SerializeField]
-    private GameObject GanguSheetCanvas;
-
+   
     [SerializeField] private Canvas select_music_and_timer_canvas;
     [SerializeField] private Canvas gayageum_sheet_canvas, banghyang_sheet_canvas, janggu_sheet_canvas;
     [SerializeField] private Button[] music_buttons = new Button[BUTTON_COUNT];
@@ -90,7 +88,9 @@ public class SelectMusicPjw : MonoBehaviour
         //1. 가야금 선택
         //StaticDataPjw.is_gayageum_selected = true;
         //2. 방향 선택
-        StaticDataPjw.is_banghyang_selected = true;
+        //StaticDataPjw.is_banghyang_selected = true;
+        //3. 장구 선택
+        StaticDataPjw.is_janggu_selected = true;
 
 
         if (StaticDataPjw.is_gayageum_selected == true)
@@ -114,7 +114,7 @@ public class SelectMusicPjw : MonoBehaviour
         else //장구 악보 활성화
         {
             Debug.Log("장구 악보 활성화");
-            GanguSheetCanvas.SetActive(true);
+            janggu_sheet_canvas.gameObject.SetActive(true);
         }
         DeactivateOtherMusicSheetCanvas();
         Invoke("DelayCallingMethod", DELAY_TIME); //악보 표출 후 1.5초 뒤에 실행   
@@ -131,15 +131,13 @@ public class SelectMusicPjw : MonoBehaviour
         {
             gayageum_sheet_canvas.gameObject.SetActive(false);
             //janggu_sheet_canvas.gameObject.SetActive(false);  
-            GanguSheetCanvas.SetActive(false);
+            //GanguSheetCanvas.SetActive(false);
         }
         else if (StaticDataPjw.is_gayageum_selected == true)
         {
             banghyang_sheet_canvas.gameObject.SetActive(false);
             //janggu_sheet_canvas.gameObject.SetActive(false);
-            GanguSheetCanvas.SetActive(false);
-
-
+            //GanguSheetCanvas.SetActive(false);
         }
         else if (StaticDataPjw.is_janggu_selected == true)
         {

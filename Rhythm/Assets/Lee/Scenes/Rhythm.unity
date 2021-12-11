@@ -2112,6 +2112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gangu_Sheet_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7210082118502228872, guid: 2d788123d21b5da479590dbd20e592d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7210082118724271617, guid: 2d788123d21b5da479590dbd20e592d5, type: 3}
       propertyPath: Musician
       value: 
