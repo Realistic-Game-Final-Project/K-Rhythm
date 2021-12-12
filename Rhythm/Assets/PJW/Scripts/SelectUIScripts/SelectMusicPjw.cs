@@ -82,17 +82,16 @@ public class SelectMusicPjw : MonoBehaviour
         yield return null;
     }
     
+    //테스트 용 코드
+    private void SelectTest()
+    {
+        StaticDataPjw.is_gayageum_selected = true;    
+        //StaticDataPjw.is_banghyang_selected = true;       
+        //StaticDataPjw.is_janggu_selected = true;
+    }
     private void StartGame()
     {
-        //다른 Scene을 이용해야 하므로 Test - Code
-        //1. 가야금 선택
-        //StaticDataPjw.is_gayageum_selected = true;
-        //2. 방향 선택
-        //StaticDataPjw.is_banghyang_selected = true;
-        //3. 장구 선택
-        StaticDataPjw.is_janggu_selected = true;
-
-
+        //SelectTest();
         if (StaticDataPjw.is_gayageum_selected == true)
         {
             Debug.Log("가야금 악보 활성화!");

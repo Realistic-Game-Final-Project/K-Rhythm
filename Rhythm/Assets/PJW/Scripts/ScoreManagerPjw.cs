@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManagerPjw : MonoBehaviour
 {
@@ -47,5 +48,10 @@ public class ScoreManagerPjw : MonoBehaviour
         int tmp = 0;
         tmp += (perfect_count * (int)SCORE.PERFECT) + (great_count * (int)SCORE.GREAT) + (miss_count * (int)SCORE.MISS);
         sum_of_score.text = tmp + "¡°";
+    }
+
+    public void ReturnStartScene()
+    {
+        SceneManager.LoadScene("Start"); //æ¿ ¿Ã∏ß¿Ã Start
     }
 }

@@ -6,8 +6,11 @@ public class UsingEffectManagerPjw : MonoBehaviour
 {
     private void Awake()
     {
-        Debug.Log("hit");
-        EffectManager_Lee.Instance.NoteHitEffect();      
+        //Debug.Log(transform.position + "  " + gameObject.name);              
     }
-   
+
+    private void FixedUpdate()
+    {
+        EffectManager_Lee.Instance.NoteHitEffect();
+    }
 }
