@@ -205,18 +205,18 @@ public class BackgroundMusic : MonoBehaviour
     IEnumerator AutoPlayBackgroundmusic()
     {      
         const float BEAT_DELAY_DIVISION = 4f;
-
         coroutine_obj = AutoPlayBackgroundmusic();
+
         //음악종료
         if (mytext.music[music_index].beat == -1)
-        {
+        {        
             StopCoroutine(coroutine_obj);
             //yield return으로는 제어권을 넘겨주기만 하고 아래의 코드가 동작하므로 에러가 나므로 , 강제로 코루틴 종료
         }
 
         int cur_sound_manager_number = ReturnSoundManagerNumber(); // 1 ~ 14
-        sound_manager_number++; 
-               
+        sound_manager_number++;
+
         //rest
         if (mytext.music[music_index].scale == 0)
         {
@@ -227,12 +227,14 @@ public class BackgroundMusic : MonoBehaviour
         else
         {
             mp3[cur_sound_manager_number].clip = audio[mytext.music[music_index].scale - 1];
-            mp3[cur_sound_manager_number].Play();
-        }        
+            mp3[cur_sound_manager_number].Play();   
+        }    
+
         yield return new WaitForSeconds(mytext.music[music_index].beat);
-        music_index++; 
+        music_index++;      
+
         StartCoroutine(AutoPlayBackgroundmusic());
-        yield return new WaitForSeconds(mytext.music[music_index].beat / BEAT_DELAY_DIVISION);
+        yield return new WaitForSeconds(mytext.music[music_index].beat / BEAT_DELAY_DIVISION);   
         StopCoroutine(coroutine_obj);
         mp3[cur_sound_manager_number].Stop();      
     }

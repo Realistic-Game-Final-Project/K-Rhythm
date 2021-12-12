@@ -17,21 +17,18 @@ public class DestroyOtherInstrumentsPjw : MonoBehaviour
     {
         if (StaticDataPjw.is_banghyang_selected == true) //ERROR : 얘만 위에서 debug를 해보면 true , true , true로 이유를 모르게 바뀌지 않음
         {
-            Debug.Log("bangbangbang");
             Destroy(janggu);
             Destroy(gayageum);
             banghyang.transform.position = middle_position;
         }        
         else if (StaticDataPjw.is_gayageum_selected == true)
         {
-            Debug.Log("gagaga");
             Destroy(banghyang);
             Destroy(janggu);
             gayageum.transform.position = middle_position;
         }
         else if (StaticDataPjw.is_janggu_selected == true)
         {
-            Debug.Log("jangjangjang");
             Destroy(banghyang);
             Destroy(gayageum);
             janggu.transform.position = middle_position;

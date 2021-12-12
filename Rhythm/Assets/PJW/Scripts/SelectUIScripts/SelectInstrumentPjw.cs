@@ -22,13 +22,13 @@ public class SelectInstrumentPjw : MonoBehaviour
     private const int INSTRUMENTS_COUNT = 3;
      
     [SerializeField] private GameObject select_menu;
-    [SerializeField] private Transform select_menu_transform;
-    [SerializeField] private Sprite[] normal_ui = new Sprite[INSTRUMENTS_COUNT];
-    [SerializeField] private Sprite[] transparent_ui = new Sprite[INSTRUMENTS_COUNT];
+    [SerializeField] private Transform select_menu_transform;   
     [SerializeField] private GameObject announcement_text;
 
     private Button[] instruments = new Button[INSTRUMENTS_COUNT];
-    private const float BIGGER_SCALE = 1.2f;
+    private Color non_transparent_color = new Color(255, 255, 255, 255);
+    private Color transparent_color = new Color(255, 255, 255, 210);
+    private const float BIGGER_SCALE = 1.1f;
     private const float DELAY_TIME = 3f;
 
     private void Awake()
@@ -62,15 +62,15 @@ public class SelectInstrumentPjw : MonoBehaviour
 
     public void SelectBanghyang()
     {
-        Debug.Log("Banghyang");
+        Debug.Log("방향 선택");
         StaticDataPjw.is_banghyang_selected = true;
         StaticDataPjw.is_gayageum_selected = false;
-        StaticDataPjw.is_banghyang_selected = false;
+        StaticDataPjw.is_janggu_selected = false;
         WorksAfterSelectInstrument();
     }
     public void SelectGayageum()
     {
-        Debug.Log("Gayageum");
+        Debug.Log("가야금 선택");
         StaticDataPjw.is_banghyang_selected = false;
         StaticDataPjw.is_gayageum_selected = true;
         StaticDataPjw.is_janggu_selected = false;
@@ -78,7 +78,7 @@ public class SelectInstrumentPjw : MonoBehaviour
     }
     public void SelectJanggu()
     {
-        Debug.Log("Janggu");
+        Debug.Log("장구 선택");
         StaticDataPjw.is_banghyang_selected = false;
         StaticDataPjw.is_gayageum_selected = false;
         StaticDataPjw.is_janggu_selected = true;
@@ -89,21 +89,22 @@ public class SelectInstrumentPjw : MonoBehaviour
     //Test
     //A-0 , S-1 , D-2
     private void BecomeBiggerAndUntransparent(KeyCode keycode)
-    {        
+    {
+        
         if(keycode == KeyCode.A)
         {
             instruments[0].transform.localScale *= BIGGER_SCALE;
-            instruments[0].image.sprite = normal_ui[0];
+            instruments[0].image.color = non_transparent_color;
         }
         else if (keycode == KeyCode.S)
         {
             instruments[1].transform.localScale *= BIGGER_SCALE;
-            instruments[1].image.sprite = normal_ui[1];
+            instruments[1].image.color = non_transparent_color;
         }
         else if (keycode == KeyCode.D)
         {
             instruments[2].transform.localScale *= BIGGER_SCALE;
-            instruments[2].image.sprite = normal_ui[2];
+            instruments[2].image.color = non_transparent_color;
         }
     }
 
@@ -113,17 +114,17 @@ public class SelectInstrumentPjw : MonoBehaviour
         if (keycode == KeyCode.A)
         {
             instruments[0].transform.localScale = normal_vector;
-            instruments[0].image.sprite = transparent_ui[0];
+            instruments[0].image.color = transparent_color;
         }
         else if (keycode == KeyCode.S)
         {
             instruments[1].transform.localScale = normal_vector;
-            instruments[1].image.sprite = transparent_ui[1];
+            instruments[1].image.color = transparent_color;
         }
         else if (keycode == KeyCode.D)
         {
             instruments[2].transform.localScale = normal_vector;
-            instruments[2].image.sprite = transparent_ui[2];
+            instruments[1].image.color = transparent_color;
         }
     }
     private void WorksAfterSelectInstrument()

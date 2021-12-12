@@ -53,25 +53,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
    
     private void Update()
     {
-        CheckInputs();
-        Test_1();        
+        CheckInputs();            
     }
 
-    private void Test_1()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) == true)
-        {
-            ScoreManagerPjw.Instance.BecomeActivate();
-        }
-        if (Input.GetKeyDown(KeyCode.W) == true)
-        {
-            ScoreManagerPjw.Instance.BecomeDeActivate();
-        }
-        if (Input.GetKeyDown(KeyCode.E) == true)
-        {
-            ScoreManagerPjw.Instance.MeasureScore(perfect_count , great_count , miss_count);
-        }
-    }  
     private void Initialize()
     {        
         for(int i=0; i<GAYAGEUM_SCALES_COUNT; i++)
@@ -147,12 +131,13 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
             if (i == 5)
             {
                 Debug.Log("가야금 종료");
+                yield return new WaitForSeconds(3);
                 WorksAfterGameEnd();
                 break;
             }
             //음악 종료
             if (selected_list[i].Item1 == -1)
-            {                
+            {                         
                 WorksAfterGameEnd();
                 break;
             }

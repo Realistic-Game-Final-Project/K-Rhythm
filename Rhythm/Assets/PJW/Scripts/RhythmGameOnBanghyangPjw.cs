@@ -48,21 +48,6 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         CheckInputs();        
     }
 
-    private void Test_1()
-    {
-        if (Input.GetKeyDown(KeyCode.Q) == true)
-        {
-            ScoreManagerPjw.Instance.BecomeActivate();
-        }
-        if (Input.GetKeyDown(KeyCode.W) == true)
-        {
-            ScoreManagerPjw.Instance.BecomeDeActivate();
-        }
-        if (Input.GetKeyDown(KeyCode.E) == true)
-        {
-            ScoreManagerPjw.Instance.MeasureScore(perfect_count, great_count, miss_count);
-        }
-    }
     //이누야샤만이라고 생각
     private void Initialize()
     {
@@ -143,7 +128,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
             }*/
             //음악 종료
             if(selected_list[i].Item1 == -1)
-            {
+            {            
                 WorksAfterGameEnd();                
                 break;
             }
