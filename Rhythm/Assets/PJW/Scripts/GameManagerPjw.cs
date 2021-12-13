@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManagerPjw : MonoBehaviour
 {
     [SerializeField] private Canvas score_canvas;
-    [SerializeField] private Image pause_image;
+    [SerializeField] private Canvas pause_canvas;
     public bool is_game_paused = false;
     public bool is_game_ended = false;
 
@@ -48,12 +48,12 @@ public class GameManagerPjw : MonoBehaviour
 
     private void PauseGame()
     {
-        pause_image.gameObject.SetActive(true);
+        pause_canvas.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
     private void RestartGame()
     {
-        pause_image.gameObject.SetActive(false);
+        pause_canvas.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 }

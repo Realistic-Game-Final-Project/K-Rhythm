@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: bridge_handle_bridge_lowMat
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: ec5728af6c2908d47907fb3c698906d1, type: 3}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -35,6 +35,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DissTexture:
+        m_Texture: {fileID: 2800000, guid: 92233e3128f55834ebb2600de0a7c641, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,10 +63,12 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _Distance: 113.2
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
+    - _Interpolation: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -73,6 +79,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _Center: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
+    - _DissolveColor: {r: 1, g: 0.44585127, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
