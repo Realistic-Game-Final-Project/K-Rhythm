@@ -780,7 +780,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1378836937}
         m_TargetAssemblyTypeName: UImanager_Lee, Assembly-CSharp
-        m_MethodName: Next
+        m_MethodName: GameSt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
