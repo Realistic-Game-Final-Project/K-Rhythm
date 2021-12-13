@@ -22,7 +22,7 @@ public class GameManagerPjw : MonoBehaviour
             return instance;
         }
     }
-
+       
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape) == true)
@@ -40,6 +40,11 @@ public class GameManagerPjw : MonoBehaviour
         }
     }
 
+    public void StopAlwaysPlayingBackgroundMusicExceptGamePlaying()
+    {
+        GameObject will_destroy_music = GameObject.Find("AlwaysPlayingBackgroundMusicExceptGamePlaying").gameObject;
+        Destroy(will_destroy_music);
+    }
     public void ShowScoreBoard()
     {
         score_canvas.gameObject.SetActive(true);

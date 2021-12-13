@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//가야금의 음계를 자료구조에 저장 시키기 때문에 -1을 해줍니다.
+//가야금 줄번호 = 가야금 악보 자료구조의 index
 enum GAYAGEUM_SCALE_NUMBER 
 {
+    TWO = 1,
+    THREE = 2,
     FOUR = 3,
     FIVE = 4,
     SIX = 5,

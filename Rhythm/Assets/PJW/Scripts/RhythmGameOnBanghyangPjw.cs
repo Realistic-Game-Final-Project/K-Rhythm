@@ -111,7 +111,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
     {
         StartCoroutine("PrintScales");
     }
-
+       
     IEnumerator PrintScales()
     {
         int index = 0;
@@ -126,13 +126,17 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
                 WorksAfterGameEnd();
                 break;
             }*/
+
+
             //음악 종료
             if(selected_list[i].Item1 == -1)
             {            
                 WorksAfterGameEnd();                
                 break;
             }
-            index = banghyang_scale_dictionary[selected_list[i].Item1];
+
+
+            index = banghyang_scale_dictionary[selected_list[i].Item1]; //선택된 음악에 저장된 scale을 index에 저장.
             beat_value = selected_list[i].Item2;
            
             if (index == -1)
@@ -165,12 +169,13 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         unity_editor_current_scales_gameobject_banghyang[index].Enqueue(note_prefab_gameobject);
     }
 
-    //이것도 CollisionAndUpdatingQueuePjw 처럼 만들어도 좋을듯
+
+    //수정하면 짧아질 듯
     //vr에서 collider로 구현되니 많이 바꿀듯
     private void CheckInputs() //A-(int)GAYAGEUM_SCALE_NUMBER.ONE , S-(int)GAYAGEUM_SCALE_NUMBER.TWO , ...
     {
         int index = 0;
-        if (Input.GetKeyDown(KeyCode.A) == true)
+        if (Input.GetKeyDown(KeyCode.Q) == true)
         {
             PlaySound(0);
             index = (int)BANGHYANG_SCALE_NUMBER.ONE;          
@@ -179,7 +184,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.S) == true)
+        if (Input.GetKeyDown(KeyCode.W) == true)
         {
             PlaySound(1);
             index = (int)BANGHYANG_SCALE_NUMBER.THREE;          
@@ -188,7 +193,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.D) == true)
+        if (Input.GetKeyDown(KeyCode.E) == true)
         {
             PlaySound(2);
             index = (int)BANGHYANG_SCALE_NUMBER.FIVE;       
@@ -197,7 +202,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.F) == true)
+        if (Input.GetKeyDown(KeyCode.R) == true)
         {
             PlaySound(3);
             index = (int)BANGHYANG_SCALE_NUMBER.SIX;          
@@ -206,7 +211,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.G) == true)
+        if (Input.GetKeyDown(KeyCode.T) == true)
         {
             PlaySound(4);
             index = (int)BANGHYANG_SCALE_NUMBER.EIGHT;          
@@ -215,7 +220,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.H) == true)
+        if (Input.GetKeyDown(KeyCode.Y) == true)
         {
             PlaySound(5);
             index = (int)BANGHYANG_SCALE_NUMBER.TEN;        
@@ -224,33 +229,97 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.J) == true)
+        if (Input.GetKeyDown(KeyCode.A) == true)
         {
             PlaySound(6);
+            index = (int)BANGHYANG_SCALE_NUMBER.TWELVE;
+            if (unity_editor_current_scales_banghyang[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.S) == true)
+        {
+            PlaySound(7);
             index = (int)BANGHYANG_SCALE_NUMBER.TWELVE;     
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.K) == true)
+        if (Input.GetKeyDown(KeyCode.D) == true)
         {
-            PlaySound(7);
+            PlaySound(8);
             index = (int)BANGHYANG_SCALE_NUMBER.THIRTEEN;        
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.L) == true)
+        if (Input.GetKeyDown(KeyCode.F) == true)
         {
-            PlaySound(8);
+            PlaySound(9);
             index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;        
             if (unity_editor_current_scales_banghyang[index].Count != 0)
             {
                 JudgeAccuracy(index);
             }
         }
+        if (Input.GetKeyDown(KeyCode.G) == true)
+        {
+            PlaySound(10);
+            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;
+            if (unity_editor_current_scales_banghyang[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.H) == true)
+        {
+            PlaySound(11);
+            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;
+            if (unity_editor_current_scales_banghyang[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Z) == true)
+        {
+            PlaySound(12);
+            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;
+            if (unity_editor_current_scales_banghyang[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.X) == true)
+        {
+            PlaySound(13);
+            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;
+            if (unity_editor_current_scales_banghyang[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.C) == true)
+        {
+            PlaySound(14);
+            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;
+            if (unity_editor_current_scales_banghyang[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.V) == true)
+        {
+            PlaySound(15);
+            index = (int)BANGHYANG_SCALE_NUMBER.FIFTEEN;
+            if (unity_editor_current_scales_banghyang[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+       
     }
 
     //악보에 음 없을 때 누르는건 아래의 함수가 작동하지 않음.

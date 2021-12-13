@@ -10,5 +10,7 @@ public class MusicDataPjw : MonoBehaviour
     //now just using music_inuyasha
     public static List<Tuple<int, float>> music_inuyasha = new List<Tuple<int, float>>();
     public static List<Tuple<int, float>> music_letitgo = new List<Tuple<int, float>>();
-    public static List<Tuple<int, float>> music_cannon = new List<Tuple<int, float>>();    
+    public static List<Tuple<int, float>> music_cannon = new List<Tuple<int, float>>();
+
+    public static int SCALE_CONTROL_VALUE = 3; //À½¾ÇÀÇ scale¿¡¼­ ÀÌ ¸¸Å­ °ªÀ» ³·ÃçÁà¾ß ¾Ë¸Â°Ô ³ª¿È. ³ë·¡¹æ À½Á¤ ³·Ãß±â ´À³¦
 }

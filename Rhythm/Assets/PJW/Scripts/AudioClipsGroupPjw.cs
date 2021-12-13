@@ -17,9 +17,11 @@ public class AudioClipsGroupPjw : MonoBehaviour
         }
     }
 
-    private const int GAYAGEUM_CLIPS_COUNT = 9;
-    private const int BANGHYANG_CLIPS_COUNT = 9;
+    private const int GAYAGEUM_CLIPS_COUNT = 12;
+    private const int BANGHYANG_CLIPS_COUNT = 16;
     private const int JANGGU_CLIPS_COUNT = 3;
+
+    //어디서든 사용할 수 있게 public
     public AudioClip[] gayageum_audio_clips = new AudioClip[GAYAGEUM_CLIPS_COUNT];
     public AudioClip[] banghyang_audio_clips = new AudioClip[BANGHYANG_CLIPS_COUNT];
     public AudioClip[] janggu_audio_clips = new AudioClip[JANGGU_CLIPS_COUNT];
