@@ -42,10 +42,13 @@ public class BackgroundMusic : MonoBehaviour
     }
 
     public const int AUDIO_SOURCE_COUNT = 14;
+    private const int SOGEUM_SCALE_COUNT = 17;    
+ 
+    [SerializeField] private AudioClip[] sogeum_scales = new AudioClip[SOGEUM_SCALE_COUNT];       
+    private AudioSource[] mp3 = new AudioSource[AUDIO_SOURCE_COUNT];
+
+    public MyTextDataArray mytext { get; private set; } //get another script 
     TextAsset textdata;
-    public MyTextDataArray mytext { get; private set; } //get another script  
-    public new AudioClip[] audio;
-    private AudioSource[] mp3 = new AudioSource[AUDIO_SOURCE_COUNT];    
     private int music_index = 0;
     private int sound_manager_number = 0;
     private IEnumerator coroutine_obj; 
@@ -207,8 +210,11 @@ public class BackgroundMusic : MonoBehaviour
         const float BEAT_DELAY_DIVISION = 4f;
         coroutine_obj = AutoPlayBackgroundmusic();
 
+        int cur_scale = mytext.music[music_index].scale;
+        float cur_beat = mytext.music[music_index].beat;
+
         //음악종료
-        if (mytext.music[music_index].beat == -1)
+        if (cur_beat == -1)
         {        
             StopCoroutine(coroutine_obj);
             //yield return으로는 제어권을 넘겨주기만 하고 아래의 코드가 동작하므로 에러가 나므로 , 강제로 코루틴 종료
@@ -218,7 +224,7 @@ public class BackgroundMusic : MonoBehaviour
         sound_manager_number++;
 
         //rest
-        if (mytext.music[music_index].scale == 0)
+        if (cur_scale == 0)
         {
             mp3[cur_sound_manager_number].clip = null;
             mp3[cur_sound_manager_number].Play();
@@ -226,15 +232,23 @@ public class BackgroundMusic : MonoBehaviour
         //note
         else
         {
-            mp3[cur_sound_manager_number].clip = audio[mytext.music[music_index].scale - 1];
+            //자료구조에서 index가 음수면 안되므로 조절
+            if (cur_scale >= MusicDataPjw.SCALE_CONTROL_VALUE)
+            {
+                mp3[cur_sound_manager_number].clip = sogeum_scales[cur_scale - MusicDataPjw.SCALE_CONTROL_VALUE];
+            }
+            else
+            {
+                mp3[cur_sound_manager_number].clip = sogeum_scales[cur_scale - 1]; //소금으로도 구현이 안된 음이 있으므로 (이누야샤 2개) 그냥 -1
+            }
             mp3[cur_sound_manager_number].Play();   
         }    
 
-        yield return new WaitForSeconds(mytext.music[music_index].beat);
+        yield return new WaitForSeconds(cur_beat);
         music_index++;      
 
         StartCoroutine(AutoPlayBackgroundmusic());
-        yield return new WaitForSeconds(mytext.music[music_index].beat / BEAT_DELAY_DIVISION);   
+        yield return new WaitForSeconds(cur_beat / BEAT_DELAY_DIVISION);   
         StopCoroutine(coroutine_obj);
         mp3[cur_sound_manager_number].Stop();      
     }

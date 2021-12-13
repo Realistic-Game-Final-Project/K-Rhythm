@@ -26,6 +26,7 @@ public class SelectMusicPjw : MonoBehaviour
         StaticDataPjw.is_letitgo_selected = false;
         StaticDataPjw.is_cannon_selected = false;
         DeactivateSelectMusicUI();
+        TurnOffBackgroundMusic(); //게임 전체에서 나오는 배경음악 끄기
         StartCoroutine("Timer");        
     }
     public void SelectLetitgo()
@@ -34,6 +35,7 @@ public class SelectMusicPjw : MonoBehaviour
         StaticDataPjw.is_letitgo_selected = true;
         StaticDataPjw.is_cannon_selected = false;
         DeactivateSelectMusicUI();
+        TurnOffBackgroundMusic();
         StartCoroutine("Timer");
     }
     public void SelectCannon()
@@ -42,9 +44,14 @@ public class SelectMusicPjw : MonoBehaviour
         StaticDataPjw.is_letitgo_selected = false;
         StaticDataPjw.is_cannon_selected = true;
         DeactivateSelectMusicUI();
+        TurnOffBackgroundMusic();
         StartCoroutine("Timer");
     }
 
+    private void TurnOffBackgroundMusic()
+    {
+        GameManagerPjw.Instance.StopAlwaysPlayingBackgroundMusicExceptGamePlaying();
+    }
     private void DeactivateSelectMusicUI()
     {
         for(int i=0; i<BUTTON_COUNT; i++)

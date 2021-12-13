@@ -38,8 +38,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     [SerializeField] private AudioSource mp3;
         
     private Vector3[] print_locations = new Vector3[GAYAGEUM_SCALES_COUNT];
-    private Dictionary<int, int> gayageum_scale_dictionary = new Dictionary<int, int>();
-    public Queue<Transform>[] unity_editor_current_scales_gayageum = new Queue<Transform>[GAYAGEUM_SCALES_COUNT]; //using CollisionAndUpdatingQueuePjw Class
+    private Dictionary<int, int> gayageum_scale_dictionary = new Dictionary<int, int>(); //가야금 - 소금 음계 연결
+    public Queue<Transform>[] unity_editor_current_scales_gayageum = new Queue<Transform>[GAYAGEUM_SCALES_COUNT]; // 리듬 게임에서 악보에 존재하는 음계의 실시간 좌표
     public Queue<GameObject>[] unity_editor_current_scales_gameobject_gayageum = new Queue<GameObject>[GAYAGEUM_SCALES_COUNT]; //최적화를 위해 따로 저장
     public int perfect_count { get; private set; }
     public int great_count { get; private set; }
@@ -68,27 +68,24 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
             unity_editor_current_scales_gameobject_gayageum[i] = new Queue<GameObject>();
         }
 
-        //소금 - 가야금
-        //소금의 0은 시 , 소금의 2는 레 , ...
-        //가야금의 줄 번호를 나타내는데 , 가야금의 줄 번호는 0부터 시작       
-        //이 코드는 100% 맞음
+        //Key - value : (소금의 몇번 음 - 가야금의 몇번 째 줄)
+        //enum에서 줄에 맞는 자료구조 번호를 지정했음
         gayageum_scale_dictionary.Add(0 , -1);
-        gayageum_scale_dictionary.Add(1, -1);
-        gayageum_scale_dictionary.Add(2, (int)GAYAGEUM_SCALE_NUMBER.FOUR);
-        gayageum_scale_dictionary.Add(3, (int)GAYAGEUM_SCALE_NUMBER.FIVE);
+        gayageum_scale_dictionary.Add(1, (int)GAYAGEUM_SCALE_NUMBER.TWO);
+        gayageum_scale_dictionary.Add(2, (int)GAYAGEUM_SCALE_NUMBER.THREE);
+        gayageum_scale_dictionary.Add(3, -1);
         gayageum_scale_dictionary.Add(4, -1);
-        gayageum_scale_dictionary.Add(5, (int)GAYAGEUM_SCALE_NUMBER.SIX);
-        gayageum_scale_dictionary.Add(6, (int)GAYAGEUM_SCALE_NUMBER.SEVEN);
-        gayageum_scale_dictionary.Add(7, (int)GAYAGEUM_SCALE_NUMBER.EIGHT);
-        gayageum_scale_dictionary.Add(8, -1);
-        gayageum_scale_dictionary.Add(9, (int)GAYAGEUM_SCALE_NUMBER.NINE);
-        gayageum_scale_dictionary.Add(10, (int)GAYAGEUM_SCALE_NUMBER.TEN);
-        gayageum_scale_dictionary.Add(11, -1);
-        gayageum_scale_dictionary.Add(12, (int)GAYAGEUM_SCALE_NUMBER.ELEVEN);
-        gayageum_scale_dictionary.Add(13, (int)GAYAGEUM_SCALE_NUMBER.TWELVE);
-        gayageum_scale_dictionary.Add(14, -1);
-        gayageum_scale_dictionary.Add(15, -1);
-
+        gayageum_scale_dictionary.Add(5, (int)GAYAGEUM_SCALE_NUMBER.FOUR);
+        gayageum_scale_dictionary.Add(6, (int)GAYAGEUM_SCALE_NUMBER.FIVE);
+        gayageum_scale_dictionary.Add(7, -1);
+        gayageum_scale_dictionary.Add(8, (int)GAYAGEUM_SCALE_NUMBER.SIX);
+        gayageum_scale_dictionary.Add(9, (int)GAYAGEUM_SCALE_NUMBER.SEVEN);
+        gayageum_scale_dictionary.Add(10, -1);
+        gayageum_scale_dictionary.Add(11, (int)GAYAGEUM_SCALE_NUMBER.EIGHT);
+        gayageum_scale_dictionary.Add(12, (int)GAYAGEUM_SCALE_NUMBER.NINE);
+        gayageum_scale_dictionary.Add(13, (int)GAYAGEUM_SCALE_NUMBER.TEN);
+        gayageum_scale_dictionary.Add(14, (int)GAYAGEUM_SCALE_NUMBER.ELEVEN);
+        gayageum_scale_dictionary.Add(15, (int)GAYAGEUM_SCALE_NUMBER.TWELVE);
         InitializeCountValues();        
     }
 
@@ -122,40 +119,56 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
 
     IEnumerator PrintScales()
     {
-        int index = 0;
+        int sogeum_scale_index = 0;
+        int gayageum_container_index = 0;
         float beat_value = 0;
 
         for(int i=0; i<selected_list.Count; i++)
         {
             //Test
-            if (i == 5)
+            /*if (i == 5)
             {
                 Debug.Log("가야금 종료");
                 yield return new WaitForSeconds(3);
                 WorksAfterGameEnd();
                 break;
-            }
+            }*/
+
+            sogeum_scale_index = selected_list[i].Item1;
+            
             //음악 종료
-            if (selected_list[i].Item1 == -1)
+            if (sogeum_scale_index == -1)
             {                         
                 WorksAfterGameEnd();
                 break;
-            }
-
-            index = gayageum_scale_dictionary[selected_list[i].Item1];
-            beat_value = selected_list[i].Item2;        
+            }     
             
-            if (index == -1)
+            //아래 3개 분기에서 소금의 값을 변경함.
+            else if(sogeum_scale_index == 0)
+            {
+                //소금 값 변경 X
+            }
+            else if(1<= sogeum_scale_index && sogeum_scale_index <= MusicDataPjw.SCALE_CONTROL_VALUE)
+            {
+                sogeum_scale_index -= 1;
+            }
+            else
+            {
+                sogeum_scale_index -= MusicDataPjw.SCALE_CONTROL_VALUE;
+            }
+            gayageum_container_index = gayageum_scale_dictionary[sogeum_scale_index]; //0번 ~ 11번까지의 '가야금 줄-1'을 저장      
+            beat_value = selected_list[i].Item2;
+
+            if (gayageum_container_index == -1)
             {
                 yield return new WaitForSeconds(beat_value);
                 continue;
             }
           
-            GameObject note_prefab = Instantiate(note, starting_points[index].position ,new Quaternion(0, 0, 0, 0)); //spawn
+            GameObject note_prefab = Instantiate(note, starting_points[gayageum_container_index].position ,new Quaternion(0, 0, 0, 0)); //spawn
             note_prefab.transform.localScale *= SCALE_SIZE_MULTIPLY;
             note_prefab.transform.SetParent(this.transform);            
-            FillUnityEditorCurrentScales(index , note_prefab.transform , note_prefab);
-                       
+            FillUnityEditorCurrentScales(gayageum_container_index, note_prefab.transform , note_prefab);                       
             yield return new WaitForSeconds(beat_value);
         }     
         yield return null;
@@ -170,10 +183,11 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     }
 
     //유니티 에디터의 UI에 존재하는 음표들을 자료구조에 저장하는 함수
-    private void FillUnityEditorCurrentScales(int index , Transform note_prefab_transform , GameObject note_prefab_gameobject)
+    private void FillUnityEditorCurrentScales(int gayageum_container_index, Transform note_prefab_transform , GameObject note_prefab_gameobject)
     {
-        unity_editor_current_scales_gayageum[index].Enqueue(note_prefab_transform);
-        unity_editor_current_scales_gameobject_gayageum[index].Enqueue(note_prefab_gameobject);
+        //Debug.Log("자료구조" + gayageum_container_index + "에 데이터 저장");
+        unity_editor_current_scales_gayageum[gayageum_container_index].Enqueue(note_prefab_transform);
+        unity_editor_current_scales_gameobject_gayageum[gayageum_container_index].Enqueue(note_prefab_gameobject);
     }
 
     /*
@@ -183,13 +197,55 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
      */
 
     //vr에서 collider로 구현되니 많이 바꿀듯
+    //자료구조 제작해야함 : 이 콜리전에 맞는 사운드 번호랑 가야금 줄
+    //EX : Q를 눌렀을 때 0번 소리가 나와야함 근데 가야금의 0번에 대응하는 소금의 값이 없음. 고로 안함.
     private void CheckInputs() 
     {
-        int index = 0;
-        if(Input.GetKeyDown(KeyCode.A) == true)
+        int index = 0; //index는 가야금 줄번호를 의미
+        if(Input.GetKeyDown(KeyCode.Q) == true) 
         {
-            PlaySound(0);
-            index = (int)GAYAGEUM_SCALE_NUMBER.FOUR;
+            PlaySound(0);          
+        }
+        if (Input.GetKeyDown(KeyCode.W) == true)
+        {
+            PlaySound(1);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TWO;       
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.E) == true)
+        {
+            PlaySound(2);
+            index = (int)GAYAGEUM_SCALE_NUMBER.THREE;      
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.R) == true)
+        {
+            PlaySound(3);
+            index = (int)GAYAGEUM_SCALE_NUMBER.FOUR;       
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.T) == true)
+        {
+            PlaySound(4);
+            index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;       
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.A) == true)
+        {
+            PlaySound(5);
+            index = (int)GAYAGEUM_SCALE_NUMBER.SIX;     
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -197,8 +253,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S) == true)
         {
-            PlaySound(1);
-            index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;       
+            PlaySound(6);
+            index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;     
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -206,8 +262,8 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D) == true)
         {
-            PlaySound(2);
-            index = (int)GAYAGEUM_SCALE_NUMBER.SIX;      
+            PlaySound(7);
+            index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;   
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {
                 JudgeAccuracy(index);
@@ -215,61 +271,42 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F) == true)
         {
-            PlaySound(3);
-            index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;       
-            if (unity_editor_current_scales_gayageum[index].Count != 0)
-            {
-                JudgeAccuracy(index);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.G) == true)
-        {
-            PlaySound(4);
-            index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;       
-            if (unity_editor_current_scales_gayageum[index].Count != 0)
-            {
-                JudgeAccuracy(index);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.H) == true)
-        {
-            PlaySound(5);
-            index = (int)GAYAGEUM_SCALE_NUMBER.NINE;     
-            if (unity_editor_current_scales_gayageum[index].Count != 0)
-            {
-                JudgeAccuracy(index);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.J) == true)
-        {
-            PlaySound(6);
-            index = (int)GAYAGEUM_SCALE_NUMBER.TEN;     
-            if (unity_editor_current_scales_gayageum[index].Count != 0)
-            {
-                JudgeAccuracy(index);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.K) == true)
-        {
-            PlaySound(7);
-            index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;   
-            if (unity_editor_current_scales_gayageum[index].Count != 0)
-            {
-                JudgeAccuracy(index);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.L) == true)
-        {
             PlaySound(8);
-            index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;      
+            index = (int)GAYAGEUM_SCALE_NUMBER.NINE;      
             if (unity_editor_current_scales_gayageum[index].Count != 0)
             {                
                 JudgeAccuracy(index);              
             }
         }
+        if (Input.GetKeyDown(KeyCode.G) == true)
+        {
+            PlaySound(9);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TEN;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Z) == true)
+        {
+            PlaySound(10);
+            index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.X) == true)
+        {
+            PlaySound(11);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
     }
 
-    //악보에 음 없을 때 누르는건 아래의 함수가 작동하지 않음.
     private void JudgeAccuracy(int index)
     {
         float accuracy_value = end_points[index].position.x - unity_editor_current_scales_gayageum[index].Peek().position.x;
@@ -283,7 +320,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         else if ((float)SCALE_ACCURACY_EASY.EASY_PERFECT  < accuracy_value && accuracy_value < (float)SCALE_ACCURACY_EASY.EASY_GREAT)
         {
             great_count++;
-
             Debug.Log(accuracy_value + " Great");           
         }      
         else //miss는 음표를 없애지 않음

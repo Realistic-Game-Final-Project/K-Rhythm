@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//12/13 
+//이 코드를 테스트 해본 결과
+//여기서 문제가 일어나는 경우는 collision이 감지가 안되서
+//데이터가 사라지지 않는 경우 일 뿐
+//각각의 자료구조는 올바르게 동작.
 public class CollisionAndUpdatingQueuePjw : MonoBehaviour
 {
     private Dictionary<string, int> gayageum_scale_tag_between_queue_index = new Dictionary<string, int>();
     private Dictionary<string, int> banghyang_scale_tag_between_queue_index = new Dictionary<string, int>();
     private void Awake()
     {
+        gayageum_scale_tag_between_queue_index.Add("end_1", (int)GAYAGEUM_SCALE_NUMBER.TWO);
+        gayageum_scale_tag_between_queue_index.Add("end_2", (int)GAYAGEUM_SCALE_NUMBER.THREE);
         gayageum_scale_tag_between_queue_index.Add("end_3", (int)GAYAGEUM_SCALE_NUMBER.FOUR);
         gayageum_scale_tag_between_queue_index.Add("end_4", (int)GAYAGEUM_SCALE_NUMBER.FIVE);
         gayageum_scale_tag_between_queue_index.Add("end_5", (int)GAYAGEUM_SCALE_NUMBER.SIX);
@@ -34,6 +41,8 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
     //SOL : 그냥 여기 지나면 삭제
     private void OnTriggerExit2D(Collider2D collision)
     {
+        int index = gayageum_scale_tag_between_queue_index[tag];
+        //Debug.Log("자료구조" + gameObject.tag +"  " + index + "에서 제거");
         PopFromSelectedQueue(gameObject.tag);
         Destroy(collision.gameObject);
     }
@@ -43,7 +52,7 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
         int index = 0;
         if (StaticDataPjw.is_gayageum_selected == true)
         {
-            index = gayageum_scale_tag_between_queue_index[tag];
+            index = gayageum_scale_tag_between_queue_index[tag];           
             RhythmGameOnSelectedSheetPjw.Instance.unity_editor_current_scales_gayageum[index].Dequeue();
             RhythmGameOnSelectedSheetPjw.Instance.unity_editor_current_scales_gameobject_gayageum[index].Dequeue();
         }
