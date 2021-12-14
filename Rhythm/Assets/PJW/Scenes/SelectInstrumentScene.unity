@@ -29327,6 +29327,7 @@ MonoBehaviour:
   play_banghyang_script: {fileID: 0}
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
+  play_yonggo_script: {fileID: 0}
 --- !u!54 &596792660
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29651,7 +29652,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 96462c6122f41334db7c0dc19bdc7b20, type: 3}
     m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
@@ -29849,6 +29850,7 @@ MonoBehaviour:
   play_banghyang_script: {fileID: 0}
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
+  play_yonggo_script: {fileID: 0}
 --- !u!65 &694423094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30779,6 +30781,7 @@ MonoBehaviour:
   LGaHand: {fileID: 0}
   LHand: {fileID: 341210742}
   RHand: {fileID: 0}
+  YonggoCha: {fileID: 0}
 --- !u!1 &811706966
 GameObject:
   m_ObjectHideFlags: 0
@@ -33463,7 +33466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8849658, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -33471,7 +33474,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 96462c6122f41334db7c0dc19bdc7b20, type: 3}
     m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
@@ -42588,6 +42591,7 @@ MonoBehaviour:
   play_banghyang_script: {fileID: 0}
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
+  play_yonggo_script: {fileID: 0}
 --- !u!54 &1526484032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -47514,6 +47518,7 @@ MonoBehaviour:
   play_banghyang_script: {fileID: 0}
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
+  play_yonggo_script: {fileID: 0}
 --- !u!54 &1555109268
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -48640,6 +48645,7 @@ MonoBehaviour:
   play_banghyang_script: {fileID: 0}
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
+  play_yonggo_script: {fileID: 0}
 --- !u!65 &1710199872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48973,6 +48979,7 @@ MonoBehaviour:
   LGaHand: {fileID: 1526484029}
   LHand: {fileID: 341210742}
   RHand: {fileID: 1410191228}
+  YonggoCha: {fileID: 0}
 --- !u!136 &1725176250
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -350,4 +350,10 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         AudioClipsGroupPjw.Instance.speaker_for_playing_game.clip = AudioClipsGroupPjw.Instance.banghyang_audio_clips[index];
         AudioClipsGroupPjw.Instance.speaker_for_playing_game.Play();
     }
+
+    /*private void PlayerAnimate(int index)
+    {
+        end_points[index].GetComponentInChildren<EffectManager_Lee>().JudgementEffect(0);
+        end_points[index].GetComponentInChildren<EffectManager_Lee>().NoteHitEffect();
+    }*/
 }

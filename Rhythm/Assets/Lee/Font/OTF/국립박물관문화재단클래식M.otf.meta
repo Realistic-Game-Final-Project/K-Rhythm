@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a72f62e9a74fabd4db85a602443e1275
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - MuseumClassic Medium
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 32e5428391f316a44bb3b81385852073, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

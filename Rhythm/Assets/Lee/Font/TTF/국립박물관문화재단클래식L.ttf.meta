@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 96462c6122f41334db7c0dc19bdc7b20
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - MuseumClassic Light
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 60368ed373b9e1a49a7f7d4c6776c26f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
