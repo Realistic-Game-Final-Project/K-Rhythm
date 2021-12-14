@@ -51,11 +51,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         Initialize();        
     }
    
-    private void Update()
-    {
-        CheckInputs();            
-    }
-
     private void Initialize()
     {        
         for(int i=0; i<GAYAGEUM_SCALES_COUNT; i++)
@@ -199,15 +194,19 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     //vr에서 collider로 구현되니 많이 바꿀듯
     //자료구조 제작해야함 : 이 콜리전에 맞는 사운드 번호랑 가야금 줄
     //EX : Q를 눌렀을 때 0번 소리가 나와야함 근데 가야금의 0번에 대응하는 소금의 값이 없음. 고로 안함.
-    private void CheckInputs() 
+
+    //VR : 이건 자주 호출되지만 name으로 비교 우린 시간이 없음
+    public void CheckInputs(string scale)
     {
         int index = 0; //index는 가야금 줄번호를 의미
-        if(Input.GetKeyDown(KeyCode.Q) == true) 
+        if(scale == "Scale")
         {
+            Debug.Log("0");
             PlaySound(0);          
         }
-        if (Input.GetKeyDown(KeyCode.W) == true)
+        else if (scale == "Scale (1)")
         {
+            Debug.Log("1");
             PlaySound(1);
             index = (int)GAYAGEUM_SCALE_NUMBER.TWO;       
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -215,8 +214,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) == true)
+        else if (scale == "Scale (2)")
         {
+            Debug.Log("2");
             PlaySound(2);
             index = (int)GAYAGEUM_SCALE_NUMBER.THREE;      
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -224,8 +224,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.R) == true)
+        else if (scale == "Scale (3)")
         {
+            Debug.Log("3");
             PlaySound(3);
             index = (int)GAYAGEUM_SCALE_NUMBER.FOUR;       
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -233,8 +234,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.T) == true)
+        else if (scale == "Scale (4)")
         {
+            Debug.Log("4");
             PlaySound(4);
             index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;       
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -242,8 +244,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.A) == true)
+        else if (scale == "Scale (5)")
         {
+            Debug.Log("5");
             PlaySound(5);
             index = (int)GAYAGEUM_SCALE_NUMBER.SIX;     
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -251,8 +254,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.S) == true)
+        else if (scale == "Scale (6)")
         {
+            Debug.Log("6");
             PlaySound(6);
             index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;     
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -260,8 +264,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.D) == true)
+        else if (scale == "Scale (7)")
         {
+            Debug.Log("7");
             PlaySound(7);
             index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;   
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -269,8 +274,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.F) == true)
+        else if (scale == "Scale (8)")
         {
+            Debug.Log("8");
             PlaySound(8);
             index = (int)GAYAGEUM_SCALE_NUMBER.NINE;      
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -278,8 +284,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);              
             }
         }
-        if (Input.GetKeyDown(KeyCode.G) == true)
+        else if (scale == "Scale (9)")
         {
+            Debug.Log("9");
             PlaySound(9);
             index = (int)GAYAGEUM_SCALE_NUMBER.TEN;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -287,8 +294,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Z) == true)
+        else if (scale == "Scale (10)")
         {
+            Debug.Log("10");
             PlaySound(10);
             index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -296,8 +304,9 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
                 JudgeAccuracy(index);
             }
         }
-        if (Input.GetKeyDown(KeyCode.X) == true)
+        else if (scale == "Scale (11)")
         {
+            Debug.Log("11");
             PlaySound(11);
             index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;
             if (unity_editor_current_scales_gayageum[index].Count != 0)

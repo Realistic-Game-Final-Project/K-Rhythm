@@ -30,13 +30,19 @@ public class IntruControl_Lee : MonoBehaviour
         }
         else if (tag == janggu_scale_tag)
         {
+            
             Debug.Log(tag + "  " + scale_object.name);
             play_janggu_script.PlayInstrument(scale_object);
         }
         else if (tag == gayageum_scale_tag)
         {
-            Debug.Log(tag + "  " + scale_object.name);
-            play_gayageum_script.PlayInstrument(scale_object);
+            //Debug.Log(tag + "  " + scale_object.name);
+            //TODO : 현재 씬이 튜토리얼이면 
+            /*{
+                play_gayageum_script.PlayInstrument(scale_object);
+            }*/
+            //TODO : playgame scene이면 이렇게          
+            RhythmGameOnSelectedSheetPjw.Instance.CheckInputs(scale_object.name);            
         }
         else if(tag == yonggo_scale_tag)
         {
