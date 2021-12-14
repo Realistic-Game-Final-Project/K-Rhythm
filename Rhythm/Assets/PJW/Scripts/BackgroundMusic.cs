@@ -42,7 +42,8 @@ public class BackgroundMusic : MonoBehaviour
     }
 
     public const int AUDIO_SOURCE_COUNT = 14;
-    private const int SOGEUM_SCALE_COUNT = 17;    
+    private const int SOGEUM_SCALE_COUNT = 17;
+    private const float DELAY_TIME = 0; //음악이 서로 다른 순서로 나와야 함
  
     [SerializeField] private AudioClip[] sogeum_scales = new AudioClip[SOGEUM_SCALE_COUNT];       
     private AudioSource[] mp3 = new AudioSource[AUDIO_SOURCE_COUNT];
@@ -150,7 +151,7 @@ public class BackgroundMusic : MonoBehaviour
     //동시에 돌아야 합니다.
     private void StartTwoCoroutinesAtSameTime()
     {
-        Invoke("DelayCallCoroutine", 2f);
+        Invoke("DelayCallCoroutine", DELAY_TIME);
         
         if (StaticDataPjw.is_gayageum_selected == true)
         {

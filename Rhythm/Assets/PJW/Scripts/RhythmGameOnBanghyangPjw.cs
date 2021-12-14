@@ -119,22 +119,12 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
 
         for (int i = 0; i < selected_list.Count; i++)
         {
-            //Test
-            /*if(i==5)
-            {
-                Debug.Log("방향 종료");
-                WorksAfterGameEnd();
-                break;
-            }*/
-
-
             //음악 종료
             if(selected_list[i].Item1 == -1)
             {            
                 WorksAfterGameEnd();                
                 break;
             }
-
 
             index = banghyang_scale_dictionary[selected_list[i].Item1]; //선택된 음악에 저장된 scale을 index에 저장.
             beat_value = selected_list[i].Item2;
