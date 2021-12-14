@@ -149,8 +149,8 @@ public class BackgroundMusic : MonoBehaviour
     //두 개의 코루틴("Auto~" , OrderFor~에서 호출하는 코루틴)은 배경음악과 , 악보에서 게임 재생이며
     //동시에 돌아야 합니다.
     private void StartTwoCoroutinesAtSameTime()
-    {        
-        StartCoroutine("AutoPlayBackgroundmusic");
+    {
+        Invoke("DelayCallCoroutine", 2f);
         
         if (StaticDataPjw.is_gayageum_selected == true)
         {
@@ -165,6 +165,11 @@ public class BackgroundMusic : MonoBehaviour
         {
             NoteManager_Lee.Instance.StartNoteGameCoroutine();
         }      
+    }
+
+    private void DelayCallCoroutine()
+    {
+        StartCoroutine("AutoPlayBackgroundmusic");
     }
     private int GetMusicDataFromStatic()
     {
