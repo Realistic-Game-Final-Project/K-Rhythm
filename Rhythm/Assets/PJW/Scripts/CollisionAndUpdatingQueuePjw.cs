@@ -11,8 +11,11 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
 {
     private Dictionary<string, int> gayageum_scale_tag_between_queue_index = new Dictionary<string, int>();
     private Dictionary<string, int> banghyang_scale_tag_between_queue_index = new Dictionary<string, int>();
+
+    //소금에 음이 없어서 나오지 않을 수도 있지만 깔끔하게 자료구조에 모두 저장
     private void Awake()
     {
+        gayageum_scale_tag_between_queue_index.Add("end_0", (int)GAYAGEUM_SCALE_NUMBER.ONE);
         gayageum_scale_tag_between_queue_index.Add("end_1", (int)GAYAGEUM_SCALE_NUMBER.TWO);
         gayageum_scale_tag_between_queue_index.Add("end_2", (int)GAYAGEUM_SCALE_NUMBER.THREE);
         gayageum_scale_tag_between_queue_index.Add("end_3", (int)GAYAGEUM_SCALE_NUMBER.FOUR);
@@ -26,14 +29,21 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
         gayageum_scale_tag_between_queue_index.Add("end_11", (int)GAYAGEUM_SCALE_NUMBER.TWELVE);
 
         banghyang_scale_tag_between_queue_index.Add("end_0", (int)BANGHYANG_SCALE_NUMBER.ONE);
+        banghyang_scale_tag_between_queue_index.Add("end_1", (int)BANGHYANG_SCALE_NUMBER.TWO);
         banghyang_scale_tag_between_queue_index.Add("end_2", (int)BANGHYANG_SCALE_NUMBER.THREE);
+        banghyang_scale_tag_between_queue_index.Add("end_3", (int)BANGHYANG_SCALE_NUMBER.FOUR);
         banghyang_scale_tag_between_queue_index.Add("end_4", (int)BANGHYANG_SCALE_NUMBER.FIVE);
         banghyang_scale_tag_between_queue_index.Add("end_5", (int)BANGHYANG_SCALE_NUMBER.SIX);
+        banghyang_scale_tag_between_queue_index.Add("end_6", (int)BANGHYANG_SCALE_NUMBER.SEVEN);
         banghyang_scale_tag_between_queue_index.Add("end_7", (int)BANGHYANG_SCALE_NUMBER.EIGHT);
+        banghyang_scale_tag_between_queue_index.Add("end_8", (int)BANGHYANG_SCALE_NUMBER.NINE);
         banghyang_scale_tag_between_queue_index.Add("end_9", (int)BANGHYANG_SCALE_NUMBER.TEN);
+        banghyang_scale_tag_between_queue_index.Add("end_10", (int)BANGHYANG_SCALE_NUMBER.ELEVEN);
         banghyang_scale_tag_between_queue_index.Add("end_11", (int)BANGHYANG_SCALE_NUMBER.TWELVE);
         banghyang_scale_tag_between_queue_index.Add("end_12", (int)BANGHYANG_SCALE_NUMBER.THIRTEEN);
-        banghyang_scale_tag_between_queue_index.Add("end_14", (int)BANGHYANG_SCALE_NUMBER.FIFTEEN);        
+        banghyang_scale_tag_between_queue_index.Add("end_13", (int)BANGHYANG_SCALE_NUMBER.FOURTEEN);
+        banghyang_scale_tag_between_queue_index.Add("end_14", (int)BANGHYANG_SCALE_NUMBER.FIFTEEN);
+        banghyang_scale_tag_between_queue_index.Add("end_15", (int)BANGHYANG_SCALE_NUMBER.SIXTEEN);     
     }
 
     //TODO : 지금 사용자가 누르지 않았을 때 collision 부분과 겹쳐져서 , 제거 되는 코드가 에러가 있어서
@@ -41,8 +51,8 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
     //SOL : 그냥 여기 지나면 삭제
     private void OnTriggerExit2D(Collider2D collision)
     {
-        int index = gayageum_scale_tag_between_queue_index[tag];
-        //Debug.Log("자료구조" + gameObject.tag +"  " + index + "에서 제거");
+        //Debug.Log(gameObject.name);
+        int index = gayageum_scale_tag_between_queue_index[tag];  
         PopFromSelectedQueue(gameObject.tag);
         Destroy(collision.gameObject);
     }
@@ -59,12 +69,9 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
         else if (StaticDataPjw.is_banghyang_selected == true)
         {
             index = banghyang_scale_tag_between_queue_index[tag];
+            //Debug.Log("지우기" + index);
             RhythmGameOnBanghyangPjw.Instance.unity_editor_current_scales_banghyang[index].Dequeue();
             RhythmGameOnBanghyangPjw.Instance.unity_editor_current_scales_gameobject_banghyang[index].Dequeue();
-        }
-        else //장구
-        {
-
-        }
+        }       
     } 
 }

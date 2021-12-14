@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 //가야금 줄번호 = 가야금 악보 자료구조의 index
 enum GAYAGEUM_SCALE_NUMBER 
 {
+    ONE = 0,
     TWO = 1,
     THREE = 2,
     FOUR = 3,
@@ -19,19 +20,25 @@ enum GAYAGEUM_SCALE_NUMBER
     TWELVE = 11
 }
 
-//방향도 자료구조에 저장 하므로 0부터 시작하므로 -1을 하고 
-//기본적으로 샾,플랫이 없음
+//방향 줄번호 = 방향 악보 자료구조의 INDEX
 enum BANGHYANG_SCALE_NUMBER
 {
     ONE = 0,
+    TWO = 1,
     THREE = 2,
+    FOUR = 3,
     FIVE = 4,
     SIX = 5,
+    SEVEN = 6,
     EIGHT = 7,
+    NINE = 8,
     TEN = 9,
+    ELEVEN = 10,
     TWELVE = 11,
     THIRTEEN = 12,
-    FIFTEEN = 14
+    FOURTEEN = 13,
+    FIFTEEN = 14,
+    SIXTEEN = 15
 }
 
 enum SCALE_ACCURACY_EASY

@@ -133,8 +133,7 @@ public class SelectInstrumentPjw : MonoBehaviour
     }
 
     private void Delay()
-    {
-        Debug.Log("move");
+    {       
         SceneManager.LoadScene("PlayGameScene");
     }
 }
