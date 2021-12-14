@@ -39,6 +39,7 @@ public class SelectInstrumentPjw : MonoBehaviour
     //형석씨가 요구한 코드
     private void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.A) == true)
         {
             BecomeBiggerAndUntransparent(KeyCode.A);
@@ -50,7 +51,7 @@ public class SelectInstrumentPjw : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) == true)
         {
             BecomeBiggerAndUntransparent(KeyCode.D);
-        }
+        }*/
     }
     private void Initialize()
     {
@@ -85,12 +86,9 @@ public class SelectInstrumentPjw : MonoBehaviour
         WorksAfterSelectInstrument();
     }
 
-    //마우스가 올라가 있으면 이게 동작하고 , 없으면 동작 X 인데 우린 vr이라...
-    //Test
-    //A-0 , S-1 , D-2
-    private void BecomeBiggerAndUntransparent(KeyCode keycode)
-    {
-        
+    //필요 없음
+    /*private void BecomeBiggerAndUntransparent(KeyCode keycode)
+    {        
         if(keycode == KeyCode.A)
         {
             instruments[0].transform.localScale *= BIGGER_SCALE;
@@ -126,7 +124,7 @@ public class SelectInstrumentPjw : MonoBehaviour
             instruments[2].transform.localScale = normal_vector;
             instruments[1].image.color = transparent_color;
         }
-    }
+    }*/
     private void WorksAfterSelectInstrument()
     {
         select_menu.SetActive(false);
@@ -136,6 +134,7 @@ public class SelectInstrumentPjw : MonoBehaviour
 
     private void Delay()
     {
+        Debug.Log("move");
         SceneManager.LoadScene("PlayGameScene");
     }
 }
