@@ -13,6 +13,13 @@ public class DestroyOtherInstrumentsPjw : MonoBehaviour
         SaveonlySelectedInstrument();
     }
 
+    private void Initialize()
+    {
+        banghyang = GameObject.FindGameObjectWithTag("Banghyang");
+        janggu = GameObject.FindGameObjectWithTag("Janggu");
+        gayageum = GameObject.FindGameObjectWithTag("Gayageum");
+    }
+
     private void SaveonlySelectedInstrument()
     {
         if (StaticDataPjw.is_banghyang_selected == true) //ERROR : 얘만 위에서 debug를 해보면 true , true , true로 이유를 모르게 바뀌지 않음
@@ -34,11 +41,6 @@ public class DestroyOtherInstrumentsPjw : MonoBehaviour
             janggu.transform.position = middle_position;
         }
     }
-    private void Initialize()
-    {
-        banghyang = GameObject.FindGameObjectWithTag("Banghyang");
-        janggu = GameObject.FindGameObjectWithTag("Janggu");
-        gayageum = GameObject.FindGameObjectWithTag("Gayageum");
-    }
+   
 
 }
