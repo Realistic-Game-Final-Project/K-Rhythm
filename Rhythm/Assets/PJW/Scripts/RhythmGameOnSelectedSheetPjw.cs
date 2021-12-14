@@ -51,6 +51,10 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         Initialize();        
     }
    
+    private void Update()
+    {
+        PlayTest();
+    }
     private void Initialize()
     {        
         for(int i=0; i<GAYAGEUM_SCALES_COUNT; i++)
@@ -120,15 +124,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
 
         for(int i=0; i<selected_list.Count; i++)
         {
-            //Test
-            /*if (i == 5)
-            {
-                Debug.Log("가야금 종료");
-                yield return new WaitForSeconds(3);
-                WorksAfterGameEnd();
-                break;
-            }*/
-
             sogeum_scale_index = selected_list[i].Item1;
             
             //음악 종료
@@ -154,12 +149,14 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
             gayageum_container_index = gayageum_scale_dictionary[sogeum_scale_index]; //0번 ~ 11번까지의 '가야금 줄-1'을 저장      
             beat_value = selected_list[i].Item2;
 
-            if (gayageum_container_index == -1)
+            if (gayageum_container_index == -1) //소금음이 없으면 그냥 패스
             {
+                Debug.Log("소금음 , 가야금 자료구조 인덱스 " + sogeum_scale_index + "  " + gayageum_container_index);
                 yield return new WaitForSeconds(beat_value);
                 continue;
             }
-          
+
+            Debug.Log("소금음 , 가야금 자료구조 인덱스 " + sogeum_scale_index + "  " + gayageum_container_index);
             GameObject note_prefab = Instantiate(note, starting_points[gayageum_container_index].position ,new Quaternion(0, 0, 0, 0)); //spawn
             note_prefab.transform.localScale *= SCALE_SIZE_MULTIPLY;
             note_prefab.transform.SetParent(this.transform);            
@@ -316,6 +313,127 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
     }
 
+
+    //TEST용 코드
+    public void PlayTest()
+    {
+        int index = 0; //index는 가야금 줄번호를 의미
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("0");
+            PlaySound(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("1");
+            PlaySound(1);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TWO;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("2");
+            PlaySound(2);
+            index = (int)GAYAGEUM_SCALE_NUMBER.THREE;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("3");
+            PlaySound(3);
+            index = (int)GAYAGEUM_SCALE_NUMBER.FOUR;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("4");
+            PlaySound(4);
+            index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("5");
+            PlaySound(5);
+            index = (int)GAYAGEUM_SCALE_NUMBER.SIX;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("6");
+            PlaySound(6);
+            index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("7");
+            PlaySound(7);
+            index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("8");
+            PlaySound(8);
+            index = (int)GAYAGEUM_SCALE_NUMBER.NINE;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.G))
+        {
+            Debug.Log("9");
+            PlaySound(9);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TEN;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("10");
+            PlaySound(10);
+            index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("11");
+            PlaySound(11);
+            index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;
+            if (unity_editor_current_scales_gayageum[index].Count != 0)
+            {
+                JudgeAccuracy(index);
+            }
+        }
+    }
     private void JudgeAccuracy(int index)
     {
         float accuracy_value = end_points[index].position.x - unity_editor_current_scales_gayageum[index].Peek().position.x;
