@@ -35,7 +35,7 @@ public class IntruControl_Lee : MonoBehaviour
             }
             else
             {
-                //TODO : 
+                RhythmGameOnBanghyangPjw.Instance.CheckInputs(scale_object.name);
             }                 
         }
         else if (tag == janggu_scale_tag)
