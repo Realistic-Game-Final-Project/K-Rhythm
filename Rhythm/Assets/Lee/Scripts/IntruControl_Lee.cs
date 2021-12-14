@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntruControl_Lee : MonoBehaviour
 {
@@ -21,34 +22,47 @@ public class IntruControl_Lee : MonoBehaviour
 
     private void ExamineInstrumentType(string tag, GameObject scale_object)
     {
+        bool is_tuto = false;
+        if(SceneManager.GetActiveScene().name == "Tuto")
+        {
+            is_tuto = true;
+        }
         if (tag == banghyang_scale_tag)
         {
-            Debug.Log(tag + "  " + scale_object.name);
-            play_banghyang_script.PlayInstrument(scale_object);
-            //OVRInput.SetControllerVibration(1f, 0.5f, OVRInput.Controller.LTouch);
-            
+            if(is_tuto == true)
+            {
+                play_banghyang_script.PlayInstrument(scale_object);
+            }
+            else
+            {
+                //TODO : 
+            }                 
         }
         else if (tag == janggu_scale_tag)
         {
-            
-            Debug.Log(tag + "  " + scale_object.name);
-            play_janggu_script.PlayInstrument(scale_object);
+            if (is_tuto == true)
+            {
+                play_janggu_script.PlayInstrument(scale_object);
+            }
+            else
+            {
+                //TODO : 
+            }
         }
         else if (tag == gayageum_scale_tag)
         {
-            //Debug.Log(tag + "  " + scale_object.name);
-            //TODO : 현재 씬이 튜토리얼이면 
-            /*{
+            if (is_tuto == true)
+            {
                 play_gayageum_script.PlayInstrument(scale_object);
-            }*/
-            //TODO : playgame scene이면 이렇게          
-            RhythmGameOnSelectedSheetPjw.Instance.CheckInputs(scale_object.name);            
+            }
+            else
+            {
+                RhythmGameOnSelectedSheetPjw.Instance.CheckInputs(scale_object.name);
+            }                     
         }
         else if(tag == yonggo_scale_tag)
         {
-            Debug.Log(tag + "  " + scale_object.name);
             play_yonggo_script.PlayInstrument(scale_object);
         }
     }
-
 }
