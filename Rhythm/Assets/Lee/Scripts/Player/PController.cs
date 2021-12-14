@@ -18,6 +18,8 @@ public class PController : MonoBehaviour
     private Animator LHand;
     [SerializeField]
     private Animator RHand;
+    [SerializeField]
+    private GameObject YonggoCha;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -40,6 +42,11 @@ public class PController : MonoBehaviour
             LHand.SetBool("Ga", true);
             RHand.SetBool("Ga", true);
         }
+        else if(other.gameObject.tag == "Yonggo")
+        {
+            YonggoCha.SetActive(true);
+            LHand.SetBool("Hold", true);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -60,6 +67,11 @@ public class PController : MonoBehaviour
             RGaHand.SetActive(false);
             LHand.SetBool("Ga", false);
             RHand.SetBool("Ga", false);
+        }
+        else if (other.gameObject.tag == "Yonggo")
+        {
+            YonggoCha.SetActive(false);
+            LHand.SetBool("Hold", false);
         }
     }
 }

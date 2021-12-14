@@ -10,7 +10,7 @@ public class UImanager_Lee : MonoBehaviour
     private GameObject[] UI = new GameObject[UIscale];
     private int NowUI = 0;
     [SerializeField]
-    private GameObject[] Ist = new GameObject[3];
+    private GameObject[] Ist = new GameObject[4];
 
     public void Next()
     {
@@ -19,15 +19,15 @@ public class UImanager_Lee : MonoBehaviour
         NowUI += 1;
         UI[NowUI].SetActive(true);
         if (NowUI == 4)
-        {
-            for (int i = 0; i < 3; i++)
+        {   
+            for (int i = 0; i < 4; i++)
             {
                 Ist[i].SetActive(true);
             }
         }
         else
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Ist[i].SetActive(false);
             }

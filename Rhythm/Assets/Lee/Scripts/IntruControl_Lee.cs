@@ -7,10 +7,12 @@ public class IntruControl_Lee : MonoBehaviour
     public const string banghyang_scale_tag = "BangHyangScale";
     public const string janggu_scale_tag = "JangGuScale";
     public const string gayageum_scale_tag = "GayageumScale";
+    public const string yonggo_scale_tag = "YonggoScale";
 
     public PlayBangHyang play_banghyang_script;
     public PlayJangGu play_janggu_script;
     public PlayGayageum play_gayageum_script;
+    public PlayYonggo play_yonggo_script;
 
     private void OnTriggerEnter(Collider collision) 
     {
@@ -35,6 +37,11 @@ public class IntruControl_Lee : MonoBehaviour
         {
             Debug.Log(tag + "  " + scale_object.name);
             play_gayageum_script.PlayInstrument(scale_object);
+        }
+        else if(tag == yonggo_scale_tag)
+        {
+            Debug.Log(tag + "  " + scale_object.name);
+            play_yonggo_script.PlayInstrument(scale_object);
         }
     }
 

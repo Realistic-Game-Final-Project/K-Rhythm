@@ -31,6 +31,8 @@ TagManager:
   - end_13
   - end_14
   - end_15
+  - HittingPointYonggo
+  - YonggoScale
   layers:
   - Default
   - TransparentFX
