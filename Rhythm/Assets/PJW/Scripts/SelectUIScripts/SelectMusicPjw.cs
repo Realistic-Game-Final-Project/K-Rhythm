@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SelectMusicPjw : MonoBehaviour
 {
-    private const int TIME_COUNT = 4;
+    private const int TIME_COUNT = 7;
     private const int BUTTON_COUNT = 3;    
     private const int GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT = 3;
     private const int BANGHYANG_SHEET_CANVAS_CHILDS_COUNT = 3;
@@ -19,6 +19,7 @@ public class SelectMusicPjw : MonoBehaviour
     [SerializeField] private Canvas select_music_and_timer_canvas;
     [SerializeField] private Canvas gayageum_sheet_canvas, banghyang_sheet_canvas, janggu_sheet_canvas;
     [SerializeField] private Button[] music_buttons = new Button[BUTTON_COUNT];
+    [SerializeField] private Text please_select_music;
     [SerializeField] private Text announcement_text;
     [SerializeField] private GameObject banghyang, gayageum, janggu;
 
@@ -63,6 +64,7 @@ public class SelectMusicPjw : MonoBehaviour
         {
             music_buttons[i].gameObject.SetActive(false);
         }
+        please_select_music.gameObject.SetActive(false);
     }
 
     IEnumerator ConstructSelectedInstrument()
@@ -100,19 +102,24 @@ public class SelectMusicPjw : MonoBehaviour
         {
             if(i==TIME_COUNT)
             {
-                announcement_text.text = "음악을 선택하셨습니다.\n 게임을 시작하겠습니다!!!";
+                announcement_text.text = "음악을 선택하셨습니다";
+                yield return new WaitForSeconds(1f); //좀 더 쉼
+            }
+            else if (i == TIME_COUNT - 2)
+            {
+                announcement_text.text = "게임을 시작하겠습니다";
                 yield return new WaitForSeconds(1f); //좀 더 쉼
             }
             else if(i==0)
             {
-                announcement_text.text = "시작!!!";
+                announcement_text.text = "시작";
                 yield return new WaitForSeconds(0.8f);
                 select_music_and_timer_canvas.transform.Find("AnnouncementAndTimer").gameObject.SetActive(false);
                 yield return new WaitForSeconds(0.2f);
                 StartGame();
                 yield return null;
             }
-            else
+            else if(1 <= i && i <= 3)
             {
                 announcement_text.text = i.ToString();
                 announcement_text.fontSize = FONT_SIZE;

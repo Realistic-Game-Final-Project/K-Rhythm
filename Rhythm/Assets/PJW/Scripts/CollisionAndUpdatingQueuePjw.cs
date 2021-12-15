@@ -51,8 +51,15 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
     //SOL : 그냥 여기 지나면 삭제
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //Debug.Log(gameObject.name);
-        int index = gayageum_scale_tag_between_queue_index[tag];  
+        int index = -1;
+        if(StaticDataPjw.is_banghyang_selected == true)
+        {
+            index = banghyang_scale_tag_between_queue_index[tag];
+        }
+        else if(StaticDataPjw.is_gayageum_selected == true)
+        {
+            index = gayageum_scale_tag_between_queue_index[tag];
+        }             
         PopFromSelectedQueue(gameObject.tag);
         Destroy(collision.gameObject);
     }

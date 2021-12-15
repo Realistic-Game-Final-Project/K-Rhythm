@@ -319,12 +319,10 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         int index = 0; //index는 가야금 줄번호를 의미
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("0");
             PlaySound(0);
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log("1");
             PlaySound(1);
             index = (int)GAYAGEUM_SCALE_NUMBER.TWO;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -334,7 +332,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("2");
             PlaySound(2);
             index = (int)GAYAGEUM_SCALE_NUMBER.THREE;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -353,7 +350,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.T))
         {
-            Debug.Log("4");
             PlaySound(4);
             index = (int)GAYAGEUM_SCALE_NUMBER.FIVE;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -363,7 +359,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("5");
             PlaySound(5);
             index = (int)GAYAGEUM_SCALE_NUMBER.SIX;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -373,7 +368,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            Debug.Log("6");
             PlaySound(6);
             index = (int)GAYAGEUM_SCALE_NUMBER.SEVEN;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -383,7 +377,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("7");
             PlaySound(7);
             index = (int)GAYAGEUM_SCALE_NUMBER.EIGHT;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -393,7 +386,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("8");
             PlaySound(8);
             index = (int)GAYAGEUM_SCALE_NUMBER.NINE;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -403,7 +395,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.G))
         {
-            Debug.Log("9");
             PlaySound(9);
             index = (int)GAYAGEUM_SCALE_NUMBER.TEN;
             if (unity_editor_current_scales_gayageum[index].Count != 0)
@@ -413,7 +404,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
-            Debug.Log("10");
             PlaySound(10);
             //소금에 해당 음이 없음
             /*index = (int)GAYAGEUM_SCALE_NUMBER.ELEVEN;
@@ -424,7 +414,6 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("11");
             PlaySound(11);
             //소금에 해당 음이 없음
             /*index = (int)GAYAGEUM_SCALE_NUMBER.TWELVE;
