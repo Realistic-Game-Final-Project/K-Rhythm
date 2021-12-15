@@ -37,7 +37,7 @@ public class UImanager_Lee : MonoBehaviour
 
     public void GameSt()
     {
-        SceneManager.LoadScene("Hyeongseok_Scene 1");
+        SceneManager.LoadScene("Opening");
     }
 
     public void IntruSummon()

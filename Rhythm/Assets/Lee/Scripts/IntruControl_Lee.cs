@@ -14,6 +14,9 @@ public class IntruControl_Lee : MonoBehaviour
     public PlayJangGu play_janggu_script;
     public PlayGayageum play_gayageum_script;
     public PlayYonggo play_yonggo_script;
+    public OpeningManager openingScript;
+
+    public bool ISYonggo = false;
 
     private void OnTriggerEnter(Collider collision) 
     {
@@ -63,6 +66,8 @@ public class IntruControl_Lee : MonoBehaviour
         else if(tag == yonggo_scale_tag)
         {
             play_yonggo_script.PlayInstrument(scale_object);
+            if (SceneManager.GetActiveScene().name == "Opening")
+                StartCoroutine(openingScript.DissolveScene());
         }
     }
 }

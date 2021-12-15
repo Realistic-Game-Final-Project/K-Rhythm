@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class TimingManager_Lee : MonoBehaviour
 {
+    private static TimingManager_Lee instance;
+    public static TimingManager_Lee Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<TimingManager_Lee>();
+            }
+            return instance;
+        }
+    }
     public List<GameObject> boxNoteList = new List<GameObject>();
 
     [SerializeField] Transform Center = null;
     [SerializeField] RectTransform[] timingRect = null;
     Vector2[] timingBox = null;
+
 
     EffectManager_Lee NEffect;
 
@@ -42,6 +55,9 @@ public class TimingManager_Lee : MonoBehaviour
                     if (x < timingBox.Length - 1)
                         NEffect.NoteHitEffect();
                     NEffect.JudgementEffect(x);
+                    ScoreCount(x);
+                    Debug.Log("perfect: " + perfect_count);
+                    Debug.Log("great: " + great_count);
                     
                     return;
                 }
@@ -50,4 +66,26 @@ public class TimingManager_Lee : MonoBehaviour
         }
         NEffect.JudgementEffect(3);
     }
+    #region 점수 확인
+    private int perfect_count;
+    private int great_count;
+    private int miss_count;
+    public void ScoreCount(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                perfect_count++;
+                break;
+            case 1:
+                great_count++;
+                break;
+            case 2:
+                miss_count++;
+                break;
+        }
+
+
+    }
+    #endregion
 }
