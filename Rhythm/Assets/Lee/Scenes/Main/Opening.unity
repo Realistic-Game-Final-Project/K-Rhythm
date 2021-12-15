@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20599568, g: 0.17015034, b: 0.20795605, a: 1}
+  m_IndirectSpecularColor: {r: 0.24901572, g: 0.20581186, b: 0.25093412, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97313,7 +97313,7 @@ MonoBehaviour:
   Cam: {fileID: 7671619622930719200}
   VRCam: {fileID: 7671619622269252015}
   useVR: 1
-  speed: 10.66
+  speed: 10
   RotSpeed: 200
 --- !u!136 &7671619623137517074
 CapsuleCollider:

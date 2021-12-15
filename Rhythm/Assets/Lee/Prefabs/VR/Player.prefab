@@ -910,7 +910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5348700754534480791
 Transform:
   m_ObjectHideFlags: 0
@@ -993,6 +993,8 @@ MonoBehaviour:
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
   play_yonggo_script: {fileID: 0}
+  openingScript: {fileID: 0}
+  ISYonggo: 0
 --- !u!54 &7039145461424376056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1153,6 +1155,8 @@ MonoBehaviour:
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
   play_yonggo_script: {fileID: 0}
+  openingScript: {fileID: 0}
+  ISYonggo: 0
 --- !u!54 &7342440354092794227
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1328,6 +1332,8 @@ MonoBehaviour:
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
   play_yonggo_script: {fileID: 0}
+  openingScript: {fileID: 0}
+  ISYonggo: 0
 --- !u!1 &7886216712047069650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +2737,8 @@ MonoBehaviour:
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
   play_yonggo_script: {fileID: 0}
+  openingScript: {fileID: 0}
+  ISYonggo: 0
 --- !u!114 &7886216712068414277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4280,11 +4288,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 7886216713310516896}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.59
-  m_Height: 2.03
+  m_Height: 3.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Center: {x: 0, y: -0.66, z: 0}
 --- !u!54 &7886216713310516898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4380,6 +4388,8 @@ MonoBehaviour:
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
   play_yonggo_script: {fileID: 0}
+  openingScript: {fileID: 0}
+  ISYonggo: 0
 --- !u!1 &7886216713760780172
 GameObject:
   m_ObjectHideFlags: 0
@@ -4459,6 +4469,8 @@ MonoBehaviour:
   play_janggu_script: {fileID: 0}
   play_gayageum_script: {fileID: 0}
   play_yonggo_script: {fileID: 0}
+  openingScript: {fileID: 0}
+  ISYonggo: 0
 --- !u!114 &7886216713760780169
 MonoBehaviour:
   m_ObjectHideFlags: 0
