@@ -33,10 +33,13 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     public List<Tuple<int, float>> selected_list = new List<Tuple<int, float>>();
     public int selected_music_number;    
     [SerializeField] Transform[] starting_points = new Transform[GAYAGEUM_SCALES_COUNT];
-    [SerializeField] Transform[] end_points = new Transform[GAYAGEUM_SCALES_COUNT];
+    [SerializeField] Transform[] end_points = new Transform[GAYAGEUM_SCALES_COUNT];    
     [SerializeField] GameObject note = null;
     [SerializeField] private AudioSource mp3;
-        
+
+    //animation
+    [SerializeField] private GameObject[] effects = new GameObject[GAYAGEUM_SCALES_COUNT];    
+
     private Vector3[] print_locations = new Vector3[GAYAGEUM_SCALES_COUNT];
     private Dictionary<int, int> gayageum_scale_dictionary = new Dictionary<int, int>(); //가야금 - 소금 음계 연결
     public Queue<Transform>[] unity_editor_current_scales_gayageum = new Queue<Transform>[GAYAGEUM_SCALES_COUNT]; // 리듬 게임에서 악보에 존재하는 음계의 실시간 좌표
@@ -51,10 +54,10 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
         Initialize();        
     }
    
-    private void Update()
+    /*private void Update()
     {
         PlayTest();
-    }
+    }*/
     private void Initialize()
     {        
         for(int i=0; i<GAYAGEUM_SCALES_COUNT; i++)
@@ -425,21 +428,25 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     }
     private void JudgeAccuracy(int index)
     {
+        PlayNoteEffect(index);
         float accuracy_value = end_points[index].position.x - unity_editor_current_scales_gayageum[index].Peek().position.x;
         accuracy_value = Math.Abs(accuracy_value);
 
         if (accuracy_value <= (float)SCALE_ACCURACY_EASY.EASY_PERFECT)
         {
+            PlayPerfectGreatMissEffect(index, 0);
             perfect_count++;
             Debug.Log(accuracy_value + " perfect");               
         }
         else if ((float)SCALE_ACCURACY_EASY.EASY_PERFECT  < accuracy_value && accuracy_value < (float)SCALE_ACCURACY_EASY.EASY_GREAT)
         {
+            PlayPerfectGreatMissEffect(index, 1);
             great_count++;
             Debug.Log(accuracy_value + " Great");           
         }      
         else //miss는 음표를 없애지 않음
         {
+            PlayPerfectGreatMissEffect(index, 2);
             miss_count++;
             Debug.Log(accuracy_value + " Miss");
         }        
@@ -449,5 +456,15 @@ public class RhythmGameOnSelectedSheetPjw : MonoBehaviour
     {
         AudioClipsGroupPjw.Instance.speaker_for_playing_game.clip = AudioClipsGroupPjw.Instance.gayageum_audio_clips[index];
         AudioClipsGroupPjw.Instance.speaker_for_playing_game.Play();
+    }
+
+    private void PlayNoteEffect(int index)
+    {
+        effects[index].GetComponent<EffectManager_Lee>().NoteHitEffect();
+    }
+
+    private void PlayPerfectGreatMissEffect(int index, int pgm) //pgm = perfect(=0) , great(=1) , miss(=2)
+    {
+        effects[index].GetComponent<EffectManager_Lee>().JudgementEffect(pgm);
     }
 }
