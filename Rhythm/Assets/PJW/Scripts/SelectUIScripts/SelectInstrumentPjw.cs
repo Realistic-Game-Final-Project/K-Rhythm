@@ -76,8 +76,10 @@ public class SelectInstrumentPjw : MonoBehaviour
         Invoke("Delay", DELAY_TIME);
     }
 
+    //Test
     private void Delay()
-    {       
-        SceneManager.LoadScene("PlayGameScene");
+    {
+        //SceneManager.LoadScene("PlayGameScene");   
+        SceneManager.LoadScene("Test2");
     }
 }
