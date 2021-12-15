@@ -23,7 +23,7 @@ public class SelectInstrumentPjw : MonoBehaviour
      
     [SerializeField] private GameObject select_menu;
     [SerializeField] private Transform select_menu_transform;   
-    [SerializeField] private GameObject announcement_text;
+    [SerializeField] private GameObject announcement_text;    
 
     private Button[] instruments = new Button[INSTRUMENTS_COUNT];
     private Color non_transparent_color = new Color(255, 255, 255, 255);
@@ -36,23 +36,6 @@ public class SelectInstrumentPjw : MonoBehaviour
         Initialize();
     }
 
-    //형석씨가 요구한 코드
-    private void Update()
-    {
-        /*
-        if(Input.GetKeyDown(KeyCode.A) == true)
-        {
-            BecomeBiggerAndUntransparent(KeyCode.A);
-        }
-        if (Input.GetKeyDown(KeyCode.S) == true)
-        {
-            BecomeBiggerAndUntransparent(KeyCode.S);
-        }
-        if (Input.GetKeyDown(KeyCode.D) == true)
-        {
-            BecomeBiggerAndUntransparent(KeyCode.D);
-        }*/
-    }
     private void Initialize()
     {
         for (int i = 0; i < INSTRUMENTS_COUNT; i++)
@@ -85,46 +68,7 @@ public class SelectInstrumentPjw : MonoBehaviour
         StaticDataPjw.is_janggu_selected = true;
         WorksAfterSelectInstrument();
     }
-
-    //필요 없음
-    /*private void BecomeBiggerAndUntransparent(KeyCode keycode)
-    {        
-        if(keycode == KeyCode.A)
-        {
-            instruments[0].transform.localScale *= BIGGER_SCALE;
-            instruments[0].image.color = non_transparent_color;
-        }
-        else if (keycode == KeyCode.S)
-        {
-            instruments[1].transform.localScale *= BIGGER_SCALE;
-            instruments[1].image.color = non_transparent_color;
-        }
-        else if (keycode == KeyCode.D)
-        {
-            instruments[2].transform.localScale *= BIGGER_SCALE;
-            instruments[2].image.color = non_transparent_color;
-        }
-    }
-
-    private void BecomeNormal(KeyCode keycode)
-    {
-        Vector3 normal_vector = new Vector3(1, 1, 1);
-        if (keycode == KeyCode.A)
-        {
-            instruments[0].transform.localScale = normal_vector;
-            instruments[0].image.color = transparent_color;
-        }
-        else if (keycode == KeyCode.S)
-        {
-            instruments[1].transform.localScale = normal_vector;
-            instruments[1].image.color = transparent_color;
-        }
-        else if (keycode == KeyCode.D)
-        {
-            instruments[2].transform.localScale = normal_vector;
-            instruments[1].image.color = transparent_color;
-        }
-    }*/
+ 
     private void WorksAfterSelectInstrument()
     {
         select_menu.SetActive(false);
