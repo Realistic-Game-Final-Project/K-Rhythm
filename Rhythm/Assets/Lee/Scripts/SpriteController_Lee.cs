@@ -48,7 +48,7 @@ public class SpriteController_Lee : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            BirdPoint[i] = new Vector3(Random.Range(30, 800), Random.Range(80, 400), 0);
+            BirdPoint[i] = new Vector3(Random.Range(250, 150), Random.Range(-250, -150), 0);
         }
     }
 

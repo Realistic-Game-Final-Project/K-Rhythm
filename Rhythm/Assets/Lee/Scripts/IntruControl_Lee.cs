@@ -49,7 +49,7 @@ public class IntruControl_Lee : MonoBehaviour
             }
             else
             {
-                //TODO : 
+                TimingManager_Lee.Instance.CheckTiming(); 
             }
         }
         else if (tag == gayageum_scale_tag)
