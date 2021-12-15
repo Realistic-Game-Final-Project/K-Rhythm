@@ -39255,7 +39255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 858589369}
   m_Layer: 0
-  m_Name: stair_poll_down (1)
+  m_Name: stair_poll_down_Edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71079,7 +71079,7 @@ GameObject:
   - component: {fileID: 1996204678}
   - component: {fileID: 1996204677}
   m_Layer: 5
-  m_Name: Score_Canvas
+  m_Name: Score_Canvas_Edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86796,7 +86796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8131389611398177281}
   m_Layer: 0
-  m_Name: palace
+  m_Name: palace_Edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103984,7 +103984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1101931958758454669}
   m_Layer: 0
-  m_Name: waterfall
+  m_Name: waterfall_Edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123151,7 +123151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6247195543359837047}
   m_Layer: 0
-  m_Name: stair_poll_down
+  m_Name: stair_poll_down_Edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130175,7 +130175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3338347267337461591}
   m_Layer: 5
-  m_Name: Score_Parent (1)
+  m_Name: Score_Parent_Edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

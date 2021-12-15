@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095702937118937472}
   m_Layer: 0
-  m_Name: palace
+  m_Name: palace_Edit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
