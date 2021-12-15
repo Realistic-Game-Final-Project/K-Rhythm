@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.29722267, g: 0.24593264, b: 0.2993883, a: 1}
+  m_IndirectSpecularColor: {r: 0.20599568, g: 0.17015034, b: 0.20795605, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -94008,7 +94008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 977987294311298418}
   m_Layer: 0
-  m_Name: banghang
+  m_Name: banghyang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

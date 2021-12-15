@@ -11,6 +11,7 @@ public class SelectMusicPjw : MonoBehaviour
     private const int BANGHYANG_SHEET_CANVAS_CHILDS_COUNT = 3;
     [SerializeField] private const float DELAY_TIME = 1.5f;
     [SerializeField] private const int FONT_SIZE = 100;
+    private const float SPAWN_VALUE = 30f;
 
     private GameObject[] gayageum_sheet_canvas_childs = new GameObject[GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT];
     private GameObject[] banghyang_sheet_canvas_childs = new GameObject[GAYAGEUM_SHEET_CANVAS_CHILDS_COUNT];
@@ -19,7 +20,8 @@ public class SelectMusicPjw : MonoBehaviour
     [SerializeField] private Canvas gayageum_sheet_canvas, banghyang_sheet_canvas, janggu_sheet_canvas;
     [SerializeField] private Button[] music_buttons = new Button[BUTTON_COUNT];
     [SerializeField] private Text announcement_text;
-        
+    [SerializeField] private GameObject banghyang, gayageum, janggu;
+
     public void SelectInuyasha()
     {
         StaticDataPjw.is_inuyasha_selected = true;
@@ -27,6 +29,7 @@ public class SelectMusicPjw : MonoBehaviour
         StaticDataPjw.is_cannon_selected = false;
         DeactivateSelectMusicUI();
         TurnOffBackgroundMusic(); //게임 전체에서 나오는 배경음악 끄기
+        StartCoroutine(ConstructSelectedInstrument());
         StartCoroutine("Timer");        
     }
     public void SelectLetitgo()
@@ -36,6 +39,7 @@ public class SelectMusicPjw : MonoBehaviour
         StaticDataPjw.is_cannon_selected = false;
         DeactivateSelectMusicUI();
         TurnOffBackgroundMusic();
+        StartCoroutine(ConstructSelectedInstrument());
         StartCoroutine("Timer");
     }
     public void SelectCannon()
@@ -45,6 +49,7 @@ public class SelectMusicPjw : MonoBehaviour
         StaticDataPjw.is_cannon_selected = true;
         DeactivateSelectMusicUI();
         TurnOffBackgroundMusic();
+        StartCoroutine(ConstructSelectedInstrument());
         StartCoroutine("Timer");
     }
 
@@ -58,6 +63,34 @@ public class SelectMusicPjw : MonoBehaviour
         {
             music_buttons[i].gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator ConstructSelectedInstrument()
+    {
+        GameObject selected_instrument = null;
+        if(StaticDataPjw.is_banghyang_selected == true)
+        {
+            selected_instrument = banghyang;
+        }
+        else if (StaticDataPjw.is_gayageum_selected == true)
+        {
+            selected_instrument = gayageum;
+        }
+        else if(StaticDataPjw.is_janggu_selected == true)
+        {
+            selected_instrument = janggu;
+        }
+
+        selected_instrument.SetActive(true);
+        selected_instrument.transform.position += new Vector3(0, SPAWN_VALUE, 0);
+
+        //2초 동안 내려오기
+        for(int i=0; i<SPAWN_VALUE; i++)
+        {
+            selected_instrument.transform.position -= new Vector3(0, 1, 0);
+            yield return new WaitForSeconds(2f / SPAWN_VALUE);
+        }
+        yield return null;
     }
 
     IEnumerator Timer()
