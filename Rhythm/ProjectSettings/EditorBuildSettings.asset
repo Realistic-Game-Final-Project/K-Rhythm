@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 0a88dec7a6eceba41acd6eb85ae38a61
   - enabled: 1
     path: Assets/Lee/Scenes/Main/Opening.unity
-    guid: f5e1fc0c58ff2684f912bcaef9f83d93
+    guid: 7cf49b19a9f970746819c3309c5beb88
   - enabled: 1
     path: Assets/PJW/Scenes/SelectInstrumentScene.unity
     guid: 1830d70526a5560449811fae7ea0b285
