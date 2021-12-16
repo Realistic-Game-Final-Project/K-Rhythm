@@ -76,7 +76,7 @@ public class CollisionAndUpdatingQueuePjw : MonoBehaviour
         else if (StaticDataPjw.is_banghyang_selected == true)
         {
             index = banghyang_scale_tag_between_queue_index[tag];
-            //Debug.Log("지우기" + index);
+            Debug.Log("지우기" + index);
             RhythmGameOnBanghyangPjw.Instance.unity_editor_current_scales_banghyang[index].Dequeue();
             RhythmGameOnBanghyangPjw.Instance.unity_editor_current_scales_gameobject_banghyang[index].Dequeue();
         }       

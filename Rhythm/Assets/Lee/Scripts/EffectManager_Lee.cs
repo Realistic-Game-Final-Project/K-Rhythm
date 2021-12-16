@@ -17,7 +17,7 @@ public class EffectManager_Lee : MonoBehaviour
         }
     }
 
-    [SerializeField] Animator noteHitAni = null;
+    [SerializeField] public Animator noteHitAni = null;
     string hit = "Hit";
     [SerializeField] Animator JudgeAni = null;
     [SerializeField] UnityEngine.UI.Image judgeImage = null;

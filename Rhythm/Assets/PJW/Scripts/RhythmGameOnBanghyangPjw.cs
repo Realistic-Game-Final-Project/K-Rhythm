@@ -25,7 +25,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
     public List<Tuple<int, float>> selected_list = new List<Tuple<int, float>>();
     public int selected_music_number;
     [SerializeField] Transform[] starting_points = new Transform[BANGHYANG_SCALES_COUNT];
-    [SerializeField] Transform[] end_points = new Transform[BANGHYANG_SCALES_COUNT];
+    [SerializeField] Transform[] end_points = new Transform[BANGHYANG_SCALES_COUNT];    
     [SerializeField] GameObject note = null;
 
     private Vector3[] print_locations = new Vector3[BANGHYANG_SCALES_COUNT];
@@ -37,18 +37,21 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
     public int great_count { get; private set; }
     public int miss_count { get; private set; }
 
+    //animation   
+    [SerializeField] private GameObject[] effects = new GameObject[BANGHYANG_SCALES_COUNT];      
+
     //should using MusicDataPjw's containers when container's data are completed.
     private void Awake()
     {
-        Initialize();
+        Initialize();              
     }
-
+    /*
     private void Update()
     {
         PlayTest();
     }
-
-    //이누야샤만이라고 생각
+    */
+    
     private void Initialize()
     {
         for (int i = 0; i < BANGHYANG_SCALES_COUNT; i++)
@@ -181,9 +184,7 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         unity_editor_current_scales_banghyang[index].Enqueue(note_prefab_transform);
         unity_editor_current_scales_gameobject_banghyang[index].Enqueue(note_prefab_gameobject);
     }
-
-
-    
+        
     private void PlayTest() //A-(int)GAYAGEUM_SCALE_NUMBER.ONE , S-(int)GAYAGEUM_SCALE_NUMBER.TWO , ...
     {
         int index = 0;
@@ -485,21 +486,25 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
     //악보에 음 없을 때 누르는건 아래의 함수가 작동하지 않음.
     private void JudgeAccuracy(int index)
     {
+        PlayNoteEffect(index);
         float accuracy_value = end_points[index].position.y - unity_editor_current_scales_banghyang[index].Peek().position.y;
         accuracy_value = Math.Abs(accuracy_value);
 
         if (accuracy_value <= (float)SCALE_ACCURACY_EASY.EASY_PERFECT)
         {
+            PlayPerfectGreatMissEffect(index , 0);
             perfect_count++;            
             Debug.Log(accuracy_value + " perfect");
         }
         else if ((float)SCALE_ACCURACY_EASY.EASY_PERFECT < accuracy_value && accuracy_value < (float)SCALE_ACCURACY_EASY.EASY_GREAT)
         {
+            PlayPerfectGreatMissEffect(index, 1);
             great_count++;
             Debug.Log(accuracy_value + " Great");
         }
         else 
         {
+            PlayPerfectGreatMissEffect(index, 2);
             miss_count++;
             Debug.Log(accuracy_value + " Miss");
         }
@@ -511,9 +516,13 @@ public class RhythmGameOnBanghyangPjw : MonoBehaviour
         AudioClipsGroupPjw.Instance.speaker_for_playing_game.Play();
     }
 
-    /*private void PlayerAnimate(int index)
+    private void PlayNoteEffect(int index)
     {
-        end_points[index].GetComponentInChildren<EffectManager_Lee>().JudgementEffect(0);
-        end_points[index].GetComponentInChildren<EffectManager_Lee>().NoteHitEffect();
-    }*/
+        effects[index].GetComponent<EffectManager_Lee>().NoteHitEffect();
+    }
+
+    private void PlayPerfectGreatMissEffect(int index , int pgm) //pgm = perfect(=0) , great(=1) , miss(=2)
+    {
+        effects[index].GetComponent<EffectManager_Lee>().JudgementEffect(pgm);
+    }
 }
