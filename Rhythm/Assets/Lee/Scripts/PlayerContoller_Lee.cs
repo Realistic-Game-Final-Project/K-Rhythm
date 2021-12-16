@@ -18,6 +18,8 @@ public class PlayerContoller_Lee : MonoBehaviour
         {
             timingManager.CheckTiming();
         }
+
+
         
     }
 }

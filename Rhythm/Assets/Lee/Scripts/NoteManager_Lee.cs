@@ -91,6 +91,10 @@ public class NoteManager_Lee : MonoBehaviour
             }
             yield return new WaitForSeconds(current_beat);
         }
+        GameManagerPjw.Instance.is_game_ended = true;
+        gameObject.SetActive(false);
+        ScoreManagerPjw.Instance.MeasureScore(TimingManager_Lee.Instance.perfect_count , TimingManager_Lee.Instance.great_count, TimingManager_Lee.Instance.miss_count);
+        GameManagerPjw.Instance.ShowScoreBoard();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

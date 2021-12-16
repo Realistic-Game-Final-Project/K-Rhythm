@@ -65,11 +65,12 @@ public class TimingManager_Lee : MonoBehaviour
             
         }
         NEffect.JudgementEffect(3);
+
     }
     #region 점수 확인
-    private int perfect_count;
-    private int great_count;
-    private int miss_count;
+    public int perfect_count;
+    public int great_count;
+    public int miss_count;
     public void ScoreCount(int x)
     {
         switch (x)
