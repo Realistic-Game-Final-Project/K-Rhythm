@@ -7,6 +7,7 @@
 ---
 ## **팀원**
 ### Front_end Developer & Game Planner : 이주엽
+
 ### Back_end Developer : 박지원
 ### Graphic Designer : 김형석
 ### Graphic Designer : 유웅연
@@ -17,10 +18,13 @@
    - 내용을 추가하세요
    - 내용을 추가하세요
 + 박지원
-   -
-   - 내용을 추가하세요
-   - 내용을 추가하세요
-   - 
+   - 리듬 게임 구현
+   - 데이터 관리 및 게임 개선 작업
+   - 프론트에서 제작한 음악 파일 데이터 관리 및 적용
+   - 전반적인 게임 UI 제작
+   - 담당한 게임 부분 전반적인 설계 총괄
+   - 게임 테스트 및 개선
+   - 기획 보조
 + 김형석 
    -
    - 모델링 및 텍스처링(북, 가야금, 팔각정)
@@ -31,6 +35,11 @@
    -
    - 모델링 및 텍스처링(방향, 장구, 계단, 다리, 장식물)
    - UI 디자인(게임진행 UI, 게임 점수 UI)
+
+
+## **발표 자료 PDF** 
+[팀 프로젝트.pdf](https://github.com/Realistic-Game-Final-Project/K-Rhythm/files/7740239/default.pdf)
+
 
 
 
