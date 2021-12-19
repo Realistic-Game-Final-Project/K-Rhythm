@@ -1,5 +1,5 @@
 # **Walking into Rhythm**
-## 작업기간 : ### 2021-11-17(수) ~ 2021-12-16(목)
+## 작업기간 :  2021-11-17(수) ~ 2021-12-16(목)
 # **What is Walking into Rhythm?**
 ![1](https://user-images.githubusercontent.com/44824414/146208991-ee93c496-a233-49c7-9d95-2a9752573078.png)
 ### Walking into Rhythm은 한국의 전통 국악기를 음악에 맞추어 직접 연주하고 체험할 수 있는 VR 기반의 리듬 게임입니다.
