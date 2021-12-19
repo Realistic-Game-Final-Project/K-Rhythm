@@ -38,7 +38,7 @@
    - 모델링 및 텍스처링(방향, 장구, 계단, 다리, 장식물)
    - UI 디자인(게임진행 UI, 게임 점수 UI)
 
-
+---
 ## **발표 자료 PDF** 
 [Walking Into Rhythm.pdf](https://github.com/Realistic-Game-Final-Project/K-Rhythm/files/7740239/default.pdf)
 
