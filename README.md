@@ -38,7 +38,7 @@
 
 
 ## **발표 자료 PDF** 
-[팀 프로젝트.pdf](https://github.com/Realistic-Game-Final-Project/K-Rhythm/files/7740239/default.pdf)
+[Walking Into Rhythm.pdf](https://github.com/Realistic-Game-Final-Project/K-Rhythm/files/7740239/default.pdf)
 
 
 
